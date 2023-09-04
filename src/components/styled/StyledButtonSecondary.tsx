@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ButtonSecondary = styled.button`
+export const StyledButtonSecondary = styled.button`
   background-color: #fff;
   border: 1px solid #55acf3;
   border-radius: 5px;
