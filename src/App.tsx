@@ -1,24 +1,24 @@
 import {
   getCategorysData,
-  getMovieByIdData,
+  getMovieByNameData,
   getMoviesData,
 } from './services/DataService';
 
 function App() {
-  const getMovies = () => {
-    const movies = getMoviesData();
+  const getMovies = async () => {
+    const movies = await getMoviesData();
 
     console.log(movies);
   };
 
-  const getMovie = () => {
-    const movie = getMovieByIdData('dark');
+  const getMovieByName = async () => {
+    const movie = await getMovieByNameData('dark');
 
     console.log(movie);
   };
 
-  const getCategorys = () => {
-    const category = getCategorysData();
+  const getCategorys = async () => {
+    const category = await getCategorysData();
 
     console.log(category);
   };
@@ -26,7 +26,7 @@ function App() {
   return (
     <>
       <button onClick={getMovies}>get movies</button>
-      <button onClick={getMovie}>get by name</button>
+      <button onClick={getMovieByName}>get by name</button>
       <button onClick={getCategorys}>get categorys</button>
     </>
   );

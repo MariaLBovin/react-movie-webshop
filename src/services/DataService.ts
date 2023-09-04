@@ -9,7 +9,7 @@ export const getMoviesData = async (): Promise<IMovie[]> => {
   return await get<IMovie[]>(`${BASE_URL}products`);
 };
 
-export const getMovieByIdData = async (url: string): Promise<IMovie> => {
+export const getMovieByNameData = async (url: string): Promise<IMovie> => {
   return await get<IMovie>(`${BASE_URL}search?searchtext=${url}`);
 };
 
