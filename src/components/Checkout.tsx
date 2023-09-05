@@ -1,3 +1,3 @@
-export const Cart = () => {
+export const Checkout = () => {
   return <>Checkout</>;
 };
