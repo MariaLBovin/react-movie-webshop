@@ -1,3 +1,4 @@
 export const Cart = () => {
-  return <>Cart</>;
-};
+    return <>Cart</>;
+  };
+  
