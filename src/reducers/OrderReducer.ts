@@ -1,4 +1,5 @@
 import { Order } from '../models/Order';
+import { OrderRow } from '../models/OrderRow';
 
 export interface IOrderAction {
   type: ActionType;
@@ -15,7 +16,13 @@ export enum ActionType {
 export const OrderReducer = (order: Order, action: IOrderAction) => {
   switch (action.type) {
     case ActionType.ADDED_ORDER_ROW: {
-      return;
+      return {
+        ...order,
+        orderRows: [
+          ...order.orderRows,
+          new OrderRow(0, 2, action.payload, 1, 1),
+        ],
+      };
     }
 
     case ActionType.REMOVED_ORDER_ROW: {

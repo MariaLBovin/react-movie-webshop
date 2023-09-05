@@ -1,4 +1,4 @@
-import { IOrderRows } from './IOrderRows';
+import { OrderRow } from './OrderRow';
 
 export class Order {
   constructor(
@@ -8,6 +8,6 @@ export class Order {
     public paymentMethod: string,
     public totalPrice: number,
     public status: number | null,
-    public orderRows: IOrderRows[]
+    public orderRows: OrderRow[]
   ) {}
 }

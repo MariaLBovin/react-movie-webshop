@@ -1,10 +1,52 @@
 import { RouterProvider } from 'react-router-dom';
 import { router } from './Router';
+import { MoviesContext } from './components/context/MoviesContext';
+import { useLocalStorage } from './hooks/useStorage';
+import { useCategorydata } from './hooks/useCategoryData';
+import { useMovieData } from './hooks/useMovieData';
+import { IMovie } from './models/IMovie';
+import { IProductCategory } from './models/IProductCategory';
+import { Order } from './models/Order';
+import { getMoviesData, getCategoriesData } from './services/DataService';
+import { Reducer, useReducer } from 'react';
+import { IOrderAction, OrderReducer } from './reducers/OrderReducer';
+import { OrderContext } from './components/context/OrderContext';
+import { useGetOrder } from './hooks/useGetOrder';
 
 function App() {
+  const [storedOrder, setStoredOrder] = useLocalStorage<Order>(
+    'order',
+    new Order(0, null, '', '', 0, null, [])
+  );
+  const [movies, setMovies] = useLocalStorage<IMovie[]>('movies', []);
+  const [categories, setCategories] = useLocalStorage<IProductCategory[]>(
+    'categories',
+    []
+  );
+
+  const [order, dispatch] = useReducer(
+    OrderReducer as Reducer<Order, IOrderAction>,
+    storedOrder
+  );
+
+  const getData = async () => {
+    const movieList = await getMoviesData();
+    const categoriesList = await getCategoriesData();
+    setMovies(movieList);
+    setCategories(categoriesList);
+  };
+
+  useMovieData(movies, getData);
+  useCategorydata(categories, getData);
+  useGetOrder(order, setStoredOrder);
+
   return (
     <>
-      <RouterProvider router={router}></RouterProvider>
+      <OrderContext.Provider value={{ order, dispatch }}>
+        <MoviesContext.Provider value={{ movies, categories }}>
+          <RouterProvider router={router}></RouterProvider>
+        </MoviesContext.Provider>
+      </OrderContext.Provider>
     </>
   );
 }
