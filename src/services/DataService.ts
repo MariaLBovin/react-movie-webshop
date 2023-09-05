@@ -13,8 +13,8 @@ export const getMovieByNameData = async (url: string): Promise<IMovie> => {
   return await get<IMovie>(`${BASE_URL}search?searchtext=${url}`);
 };
 
-export const getCategorysData = async (): Promise<IProductCategory> => {
-  return await get<IProductCategory>(`${BASE_URL}categories/`);
+export const getCategoriesData = async (): Promise<IProductCategory[]> => {
+  return await get<IProductCategory[]>(`${BASE_URL}categories/`);
 };
 
 export const postOrderData = async (url: Order): Promise<Order> => {
