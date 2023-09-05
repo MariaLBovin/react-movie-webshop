@@ -20,6 +20,8 @@ export const Home = () => {
     "categories",
     []
   );
+  const [selectedCategory, setSelectedCategory] =
+    useState<IProductCategory | null>(null);
   const [search, setSearch] = useState("");
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
@@ -32,8 +34,8 @@ export const Home = () => {
       (category) => category.name === e.currentTarget.innerText
     );
 
-    // Waiting for dispatch to be implemented
-    console.log(category);
+    if (category) setSelectedCategory(category);
+    console.log(selectedCategory);
   };
 
   const getData = async () => {
