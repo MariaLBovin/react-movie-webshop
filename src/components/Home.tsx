@@ -2,6 +2,9 @@ import { useMovieData } from '../hooks/useMovieData';
 import { useLocalStorage } from '../hooks/useStorage';
 import { IMovie } from '../models/IMovie';
 import { getMoviesData } from '../services/DataService';
+import { MovieList } from './MovieList';
+import { StyledUL } from './styled/StyledUL';
+import { StyledMoviesWrapper } from './styled/Wrappers';
 
 export const Home = () => {
   const [movies, setMovies] = useLocalStorage<IMovie[]>('movies', []);
@@ -14,9 +17,13 @@ export const Home = () => {
   useMovieData(movies, getData);
   return (
     <>
-      {movies.map((movie) => (
-        <div key={movie.id}>{movie.name}</div>
+    <StyledMoviesWrapper>
+    <StyledUL>
+    {movies.map((movie) => (
+        <MovieList movie={movie} key={movie.id}></MovieList>
       ))}
+    </StyledUL>
+    </StyledMoviesWrapper>
     </>
   );
 };
