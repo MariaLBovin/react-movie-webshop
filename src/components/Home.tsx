@@ -12,6 +12,7 @@ import {
 import { IProductCategory } from "../models/IProductCategory";
 import { getCategoriesData, getMoviesData } from "../services/DataService";
 import { Sidebar } from "./Sidebar";
+import { useState } from "react";
 
 export const Home = () => {
   const [movies, setMovies] = useLocalStorage<IMovie[]>("movies", []);
@@ -19,6 +20,21 @@ export const Home = () => {
     "categories",
     []
   );
+  const [search, setSearch] = useState("");
+
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(search);
+  };
+
+  const filterByCategory = (e: React.MouseEvent<HTMLDivElement>) => {
+    const category = categories.find(
+      (category) => category.name === e.currentTarget.innerText
+    );
+
+    // Waiting for dispatch to be implemented
+    console.log(category);
+  };
 
   const getData = async () => {
     const movieList = await getMoviesData();
@@ -33,7 +49,12 @@ export const Home = () => {
     <>
       <StyledMain>
         <StyledSidebarWrapper>
-          <Sidebar />
+          <Sidebar
+            search={search}
+            setSearch={setSearch}
+            searchSubmit={handleSearch}
+            filterByCategory={filterByCategory}
+          />
         </StyledSidebarWrapper>
         <StyledMoviesWrapper>
           <StyledUL>
