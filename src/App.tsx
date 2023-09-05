@@ -1,5 +1,5 @@
-import { RouterProvider } from "react-router-dom";
-import { router } from "./Router";
+import { RouterProvider } from 'react-router-dom';
+import { router } from './Router';
 import {
   getCategorysData,
   getMovieByNameData,
@@ -7,7 +7,6 @@ import {
 } from './services/DataService';
 
 function App() {
-  
   const getMovies = async () => {
     const movies = await getMoviesData();
     console.log(movies);

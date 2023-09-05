@@ -1,29 +1,29 @@
-import { createBrowserRouter } from "react-router-dom";
-import { Layout } from "./components/Layout";
-import { Movies } from "./components/Movies";
-import { Movie } from "./components/Movie";
-import { Cart } from "./components/Cart";
-import { Confirmation } from "./components/Confirmation";
+import { createBrowserRouter } from 'react-router-dom';
+import { Layout } from './components/Layout';
+import { Movie } from './components/Movie';
+import { Cart } from './components/Cart';
+import { Confirmation } from './components/Confirmation';
+import { Home } from './components/Home';
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Layout />,
     children: [
       {
-        path: "/",
-        element: <Movies />,
+        path: '/',
+        element: <Home />,
       },
       {
-        path: "/movie/:id",
+        path: '/movie/:id',
         element: <Movie />,
       },
       {
-        path: "/cart",
+        path: '/cart',
         element: <Cart />,
       },
       {
-        path: "/confirmation",
+        path: '/confirmation',
         element: <Confirmation />,
       },
     ],
