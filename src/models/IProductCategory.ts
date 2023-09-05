@@ -1,3 +1,4 @@
 export interface IProductCategory {
-  categoryName: string[];
+  id: number;
+  name: string;
 }
