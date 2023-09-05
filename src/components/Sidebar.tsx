@@ -17,6 +17,15 @@ export const Sidebar = () => {
     localStorage.getItem("categories") || "[]"
   ) as IProductCategory[];
 
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const category = categories.find(
+      (category) => category.name === e.currentTarget.innerText
+    );
+
+    // Waiting for dispatch to be implemented
+    console.log(category);
+  };
+
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -26,12 +35,14 @@ export const Sidebar = () => {
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
             setSearch(e.target.value);
           }}
-        ></StyledInput>
+        />
         <StyledButtonSecondary>Search</StyledButtonSecondary>
       </form>
       <h2>Categories</h2>
       {categories.map((category: IProductCategory) => (
-        <div key={category.id}>{category.name}</div>
+        <div key={category.id} onClick={handleClick}>
+          {category.name}
+        </div>
       ))}
     </>
   );
