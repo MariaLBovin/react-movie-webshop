@@ -12,6 +12,8 @@ export const Movie = () => {
     (movie: IMovie) => JSON.stringify(movie.id) === id
   );
 
+  //Replace image wrapping div with StyledImageWrapper
+
   return (
     <StyledMovieWrapper>
       <div>
