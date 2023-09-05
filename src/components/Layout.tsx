@@ -1,15 +1,15 @@
 import { Outlet } from "react-router-dom";
 import { Header } from "./Header";
+import { StyledHeader } from "./styled/Wrappers";
+
 
 export const Layout = () => {
   return (
     <>
-      <header>
+      <StyledHeader>
         <Header />
-      </header>
-      <main>
+      </StyledHeader>
         <Outlet />
-      </main>
     </>
   );
 };

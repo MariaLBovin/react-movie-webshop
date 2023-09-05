@@ -6,6 +6,8 @@ export const StyledButtonPrimary = styled.button`
   border: 1px solid black;
   background-color: #55acf3;
   color: white;
+  margin: 5px;
+  width: 100px;
 
   &:hover {
     background-color: #ffffff;

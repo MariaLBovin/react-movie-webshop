@@ -1,8 +1,11 @@
-import { useParams } from 'react-router-dom';
-import { IMovie } from '../models/IMovie';
-import { StyledMovieWrapper } from './styled/Wrappers';
-import { StyledButtonPrimary } from './styled/StyledButtonPrimary';
-import { StyledButtonSecondary } from './styled/StyledButtonSecondary';
+
+import { useParams } from "react-router-dom";
+import { IMovie } from "../models/IMovie";
+import { StyledMovieWrapper } from "./styled/Wrappers";
+import { StyledButtonPrimary } from "./styled/StyledButtonPrimary";
+import { StyledButtonSecondary } from "./styled/StyledButtonSecondary";
+import { StyledImage } from "./styled/StyledImage";
+
 
 export const Movie = () => {
   const { id } = useParams();
@@ -16,9 +19,7 @@ export const Movie = () => {
 
   return (
     <StyledMovieWrapper>
-      <div>
-        <img src={foundMovie.imageUrl} alt={foundMovie.title} />
-      </div>
+      <StyledImage src={foundMovie.imageUrl} alt={foundMovie.title} />
       <h2>{foundMovie.title}</h2>
       <p>{foundMovie.description}</p>
       <p>{foundMovie.price}kr</p>
