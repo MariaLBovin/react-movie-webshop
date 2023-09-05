@@ -1,3 +1,4 @@
+
 import { useParams } from "react-router-dom";
 import { IMovie } from "../models/IMovie";
 import { StyledMovieWrapper } from "./styled/Wrappers";
@@ -5,9 +6,10 @@ import { StyledButtonPrimary } from "./styled/StyledButtonPrimary";
 import { StyledButtonSecondary } from "./styled/StyledButtonSecondary";
 import { StyledImage } from "./styled/StyledImage";
 
+
 export const Movie = () => {
   const { id } = useParams();
-  const movies = JSON.parse(localStorage.getItem("movies") || "[]");
+  const movies = JSON.parse(localStorage.getItem('movies') || '[]');
 
   const foundMovie = movies.find(
     (movie: IMovie) => JSON.stringify(movie.id) === id
