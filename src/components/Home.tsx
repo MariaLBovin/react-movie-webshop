@@ -2,8 +2,13 @@ import { useCategorydata } from '../hooks/useCategoryData';
 import { useMovieData } from '../hooks/useMovieData';
 import { useLocalStorage } from '../hooks/useStorage';
 import { IMovie } from '../models/IMovie';
+import { getMoviesData } from '../services/DataService';
+import { MovieList } from './MovieList';
+import { StyledUL } from './styled/StyledUL';
+import { StyledMain, StyledMoviesWrapper } from './styled/Wrappers';
 import { IProductCategory } from '../models/IProductCategory';
 import { getCategoriesData, getMoviesData } from '../services/DataService';
+
 
 export const Home = () => {
   const [movies, setMovies] = useLocalStorage<IMovie[]>('movies', []);
@@ -23,10 +28,17 @@ export const Home = () => {
   useCategorydata(categories, getData);
   return (
     <>
-      <h2>movies</h2>
-      {movies.map((movie) => (
-        <div key={movie.id}>{movie.name}</div>
+
+    <StyledMain>
+      {/* Här kommer sidebar ligga */}
+    <StyledMoviesWrapper>
+    <StyledUL>
+    {movies.map((movie) => (
+        <MovieList movie={movie} key={movie.id}></MovieList>
       ))}
+    </StyledUL>
+    </StyledMoviesWrapper>
+    </StyledMain>
       <h2>categories</h2>
       {categories.map((category) => (
         <div key={category.id}>{category.name}</div>
