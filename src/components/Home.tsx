@@ -3,6 +3,7 @@ import { useMovieData } from '../hooks/useMovieData';
 import { useLocalStorage } from '../hooks/useStorage';
 import { IMovie } from '../models/IMovie';
 import { IProductCategory } from '../models/IProductCategory';
+import { Order } from '../models/Order';
 import { getCategoriesData, getMoviesData } from '../services/DataService';
 
 export const Home = () => {
@@ -10,6 +11,10 @@ export const Home = () => {
   const [categories, setCategories] = useLocalStorage<IProductCategory[]>(
     'categories',
     []
+  );
+  const [order, setOrder] = useLocalStorage<Order>(
+    'order',
+    new Order(0, null, '', '', 0, null, [])
   );
 
   const getData = async () => {
