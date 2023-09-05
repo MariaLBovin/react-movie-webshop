@@ -1,4 +1,5 @@
 
+import { Link } from "react-router-dom"
 import { IMovie } from "../models/IMovie"
 import { StyledButtonPrimary } from "./styled/StyledButtonPrimary"
 import { StyledButtonSecondary } from "./styled/StyledButtonSecondary"
@@ -13,7 +14,9 @@ export const MovieList = ({movie}: IMovieProps) => {
     <StyledLi>
         <h3>{movie.name}</h3>
         <img src={movie.imageUrl} width={250}></img>
+        <Link to={'./movie/' + movie.id}>
         <StyledButtonSecondary>Läs mer</StyledButtonSecondary>
+        </Link>
         <StyledButtonPrimary>Köp</StyledButtonPrimary>
     </StyledLi>
   )
