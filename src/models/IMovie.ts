@@ -1,3 +1,5 @@
+import { IProductCategory } from './IProductCategory';
+
 export interface IMovie {
   id: number;
   name: string;
