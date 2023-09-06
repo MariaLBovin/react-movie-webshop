@@ -26,10 +26,7 @@ export const Home = () => {
           </StyledUL>
         </StyledMoviesWrapper>
       </StyledMain>
-      <h2>categories</h2>
-      {categories.map((category) => (
-        <div key={category.id}>{category.name}</div>
-      ))}
+      
     </>
   );
 };
