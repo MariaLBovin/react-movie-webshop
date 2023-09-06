@@ -1,3 +1,8 @@
+import { OrderForm } from "./OrderForm";
+
 export const Checkout = () => {
-  return <>Checkout</>;
+  return <>
+    <OrderForm></OrderForm>
+  
+  </>;
 };
