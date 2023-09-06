@@ -35,9 +35,9 @@ export const OrderReducer = (order: Order, action: IOrderAction) => {
     case ActionType.REMOVED_ORDER_ROW: {
       return {
         ...order,
-        totalPrice: order.totalPrice - +action.payload,
+        totalPrice: order.totalPrice - action.payload.price,
         orderRows: order.orderRows.filter(
-          (orderRow) => orderRow.id !== +action.payload
+          (orderRow) => orderRow.id !== action.payload.id
         ),
       };
     }

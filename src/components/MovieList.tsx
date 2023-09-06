@@ -34,6 +34,13 @@ export const MovieList = ({ movie }: IMovieProps) => {
       >
         Köp
       </StyledButtonPrimary>
+      <StyledButtonPrimary
+        onClick={() =>
+          dispatch({ type: ActionType.REMOVED_ORDER_ROW, payload: movie })
+        }
+      >
+        Ta bort
+      </StyledButtonPrimary>
     </StyledLi>
   );
 };
