@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const StyledMain = styled.main`
-  margin: 1em;
   display: flex;
   background-color: #f5f0e8;
   min-height: 100vh;
@@ -30,9 +29,12 @@ export const StyledMoviesWrapper = styled.div`
   min-height: 100vh;
   margin-left: 20vw;
 `;
-export const StyledMovieWrapper = styled.div`
-  display: flex;
+export const StyledMovieWrapper = styled(StyledMain)`
   flex-direction: column;
-  width: 100vw;
-  height: 100vh;
 `;
+
+export const StyledCheckoutWrapper = styled(StyledMain) `
+  flex-direction: column;
+  align-items: center;
+
+`
