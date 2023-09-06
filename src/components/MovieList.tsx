@@ -2,6 +2,9 @@ import { IMovie } from '../models/IMovie';
 import { StyledButtonPrimary } from './styled/StyledButtonPrimary';
 import { StyledButtonSecondary } from './styled/StyledButtonSecondary';
 import { StyledLi } from './styled/StyledLi';
+import { StyledImage } from './styled/StyledImage';
+
+const fallbackImg = './src/assets/fallbackImg.png';
 
 interface IMovieProps {
   movie: IMovie;
@@ -9,18 +12,17 @@ interface IMovieProps {
 export const MovieList = ({ movie }: IMovieProps) => {
   return (
     <StyledLi>
-      <img
+      <StyledImage
         src={movie.imageUrl}
         width={250}
-        alt={movie.name}
-        onError={({ currentTarget }) => {
-          currentTarget.onerror = null;
-          currentTarget.src = './src/assets/fallbackImg.png';
-          currentTarget.loading = 'lazy';
+        onError={(e) => {
+          e.currentTarget.src = fallbackImg;
         }}
-      />
+      ></StyledImage>
       <h3>{movie.name}</h3>
-      <StyledButtonSecondary>Läs mer</StyledButtonSecondary>
+      <StyledButtonSecondary as='a' href={'./movie/' + movie.id}>
+        Läs mer
+      </StyledButtonSecondary>
       <StyledButtonPrimary>Köp</StyledButtonPrimary>
     </StyledLi>
   );
