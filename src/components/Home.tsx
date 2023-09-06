@@ -1,3 +1,4 @@
+
 import { useCategorydata } from "../hooks/useCategoryData";
 import { useMovieData } from "../hooks/useMovieData";
 import { useLocalStorage } from "../hooks/useStorage";
@@ -72,4 +73,5 @@ export const Home = () => {
       ))}
     </>
   );
+
 };

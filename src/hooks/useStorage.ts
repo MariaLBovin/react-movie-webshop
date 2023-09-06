@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import { IMovie } from '../models/IMovie';
 
-const getValue = (key: string, initialValue: IMovie[]) => {
+const getValue = <T>(key: string, initialValue: T) => {
   const savedValue = JSON.parse(localStorage.getItem(key) || 'null');
   if (savedValue !== null) {
     return savedValue;
@@ -9,7 +8,7 @@ const getValue = (key: string, initialValue: IMovie[]) => {
   return initialValue;
 };
 
-export const useLocalStorage = <T>(key: string, initialValue: IMovie[]) => {
+export const useLocalStorage = <T>(key: string, initialValue: T) => {
   const [value, setValue] = useState<T>(() => {
     return getValue(key, initialValue);
   });
