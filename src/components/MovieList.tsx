@@ -3,6 +3,9 @@ import { StyledButtonPrimary } from './styled/StyledButtonPrimary';
 import { StyledButtonSecondary } from './styled/StyledButtonSecondary';
 import { StyledLi } from './styled/StyledLi';
 import { StyledImage } from './styled/StyledImage';
+import { useContext } from 'react';
+import { OrderContext } from '../context/OrderContext';
+import { ActionType } from '../reducers/OrderReducer';
 import { OrderRow } from '../models/OrderRow';
 
 const fallbackImg = './src/assets/fallbackImg.png';
@@ -11,20 +14,7 @@ interface IMovieProps {
   movie: IMovie;
 }
 export const MovieList = ({ movie }: IMovieProps) => {
-  const handleClick = () => {
-    const newOrderRow = new OrderRow(
-      movie.id,
-      movie.name,   
-      movie.price, 
-      1,                  
-      1                   
-    );
-    const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
-    existingCart.push(newOrderRow);
-    localStorage.setItem('cart', JSON.stringify(existingCart));
-  };
-  
-
+  const { dispatch } = useContext(OrderContext);
   return (
     <StyledLi>
       <StyledImage
@@ -38,7 +28,20 @@ export const MovieList = ({ movie }: IMovieProps) => {
       <StyledButtonSecondary as='a' href={'./movie/' + movie.id}>
         Läs mer
       </StyledButtonSecondary>
-      <StyledButtonPrimary onClick={handleClick}>Köp</StyledButtonPrimary>
+      <StyledButtonPrimary
+        onClick={() =>
+          dispatch({ type: ActionType.ADDED_ORDER_ROW, payload: movie })
+        }
+      >
+        Köp
+      </StyledButtonPrimary>
+      <StyledButtonPrimary
+        onClick={() =>
+          dispatch({ type: ActionType.REMOVED_ORDER_ROW, payload: movie })
+        }
+      >
+        Ta bort
+      </StyledButtonPrimary>
     </StyledLi>
   );
 };

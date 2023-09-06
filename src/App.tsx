@@ -1,6 +1,6 @@
 import { RouterProvider } from 'react-router-dom';
 import { router } from './Router';
-import { MoviesContext } from './components/context/MoviesContext';
+import { MoviesContext } from './context/MoviesContext';
 import { useLocalStorage } from './hooks/useStorage';
 import { useCategorydata } from './hooks/useCategoryData';
 import { useMovieData } from './hooks/useMovieData';
@@ -10,7 +10,7 @@ import { Order } from './models/Order';
 import { getMoviesData, getCategoriesData } from './services/DataService';
 import { Reducer, useReducer } from 'react';
 import { IOrderAction, OrderReducer } from './reducers/OrderReducer';
-import { OrderContext } from './components/context/OrderContext';
+import { OrderContext } from './context/OrderContext';
 import { useGetOrder } from './hooks/useGetOrder';
 
 function App() {
