@@ -1,4 +1,3 @@
-
 import { useCategorydata } from "../hooks/useCategoryData";
 import { useMovieData } from "../hooks/useMovieData";
 import { useLocalStorage } from "../hooks/useStorage";
@@ -21,8 +20,6 @@ export const Home = () => {
     "categories",
     []
   );
-  const [selectedCategory, setSelectedCategory] =
-    useState<IProductCategory | null>(null);
   const [search, setSearch] = useState("");
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
@@ -30,13 +27,25 @@ export const Home = () => {
     console.log(search);
   };
 
-  const filterByCategory = (e: React.MouseEvent<HTMLDivElement>) => {
-    const category = categories.find(
+  const getSelectedCategory = (e: React.MouseEvent<HTMLDivElement>) => {
+    const selectedCategory = categories.find(
       (category) => category.name === e.currentTarget.innerText
     );
 
-    if (category) setSelectedCategory(category);
-    console.log(selectedCategory);
+    if (selectedCategory) {
+      getFilteredMovies(selectedCategory);
+    }
+  };
+
+  const [displayedMovies, setDisplayedMovies] = useState<IMovie[]>(movies);
+
+  const getFilteredMovies = (selectedCategory: IProductCategory) => {
+    const filteredMovies = movies.filter((movie) =>
+      movie.productCategory.some(
+        (category) => category.categoryId === selectedCategory.id
+      )
+    );
+    setDisplayedMovies(filteredMovies);
   };
 
   const getData = async () => {
@@ -48,6 +57,7 @@ export const Home = () => {
 
   useMovieData(movies, getData);
   useCategorydata(categories, getData);
+
   return (
     <>
       <StyledMain>
@@ -56,22 +66,17 @@ export const Home = () => {
             search={search}
             setSearch={setSearch}
             searchSubmit={handleSearch}
-            filterByCategory={filterByCategory}
+            getSelectedCategory={getSelectedCategory}
           />
         </StyledSidebarWrapper>
         <StyledMoviesWrapper>
           <StyledUL>
-            {movies.map((movie) => (
+            {displayedMovies.map((movie) => (
               <MovieList movie={movie} key={movie.id}></MovieList>
             ))}
           </StyledUL>
         </StyledMoviesWrapper>
       </StyledMain>
-      <h2>categories</h2>
-      {categories.map((category) => (
-        <div key={category.id}>{category.name}</div>
-      ))}
     </>
   );
-
 };

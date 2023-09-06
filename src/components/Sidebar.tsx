@@ -7,14 +7,14 @@ interface ISidebarProps {
   search: string;
   setSearch: (search: string) => void;
   searchSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  filterByCategory: (e: React.MouseEvent<HTMLDivElement>) => void;
+  getSelectedCategory: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 export const Sidebar = ({
   search,
   setSearch,
   searchSubmit,
-  filterByCategory,
+  getSelectedCategory,
 }: ISidebarProps) => {
   const categories = JSON.parse(
     localStorage.getItem("categories") || "[]"
@@ -34,7 +34,7 @@ export const Sidebar = ({
       </form>
       <h2>Categories</h2>
       {categories.map((category: IProductCategory) => (
-        <div key={category.id} onClick={filterByCategory}>
+        <div key={category.id} onClick={getSelectedCategory}>
           {category.name}
         </div>
       ))}
