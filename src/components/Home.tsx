@@ -21,9 +21,7 @@ export const Home = () => {
         <StyledMoviesWrapper>
           <StyledUL>
             {movies.map((movie) => (
-              <li key={movie.id}>
-                <MovieList movie={movie} />
-              </li>
+              <MovieList movie={movie} key={movie.id} />
             ))}
           </StyledUL>
         </StyledMoviesWrapper>
