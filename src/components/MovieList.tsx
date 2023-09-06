@@ -3,6 +3,9 @@ import { StyledButtonPrimary } from './styled/StyledButtonPrimary';
 import { StyledButtonSecondary } from './styled/StyledButtonSecondary';
 import { StyledLi } from './styled/StyledLi';
 import { StyledImage } from './styled/StyledImage';
+import { useContext } from 'react';
+import { OrderContext } from '../context/OrderContext';
+import { ActionType } from '../reducers/OrderReducer';
 
 const fallbackImg = './src/assets/fallbackImg.png';
 
@@ -10,6 +13,7 @@ interface IMovieProps {
   movie: IMovie;
 }
 export const MovieList = ({ movie }: IMovieProps) => {
+  const { dispatch } = useContext(OrderContext);
   return (
     <StyledLi>
       <StyledImage
@@ -23,7 +27,13 @@ export const MovieList = ({ movie }: IMovieProps) => {
       <StyledButtonSecondary as='a' href={'./movie/' + movie.id}>
         Läs mer
       </StyledButtonSecondary>
-      <StyledButtonPrimary>Köp</StyledButtonPrimary>
+      <StyledButtonPrimary
+        onClick={() =>
+          dispatch({ type: ActionType.ADDED_ORDER_ROW, payload: movie })
+        }
+      >
+        Köp
+      </StyledButtonPrimary>
     </StyledLi>
   );
 };

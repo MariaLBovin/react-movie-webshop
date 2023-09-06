@@ -5,11 +5,14 @@ import { StyledButtonPrimary } from './styled/StyledButtonPrimary';
 import { StyledButtonSecondary } from './styled/StyledButtonSecondary';
 import { StyledImage } from './styled/StyledImage';
 import { useContext } from 'react';
-import { MoviesContext } from './context/MoviesContext';
+import { MoviesContext } from '../context/MoviesContext';
+import { OrderContext } from '../context/OrderContext';
+import { ActionType } from '../reducers/OrderReducer';
 
 export const Movie = () => {
   const { id } = useParams();
   const { movies } = useContext(MoviesContext);
+  const { dispatch } = useContext(OrderContext);
 
   const foundMovie = movies.find(
     (movie: IMovie) => JSON.stringify(movie.id) === id
@@ -23,7 +26,13 @@ export const Movie = () => {
       <h2>{foundMovie.name}</h2>
       <p>{foundMovie.description}</p>
       <p>{foundMovie.price}kr</p>
-      <StyledButtonPrimary>Buy</StyledButtonPrimary>
+      <StyledButtonPrimary
+        onClick={() =>
+          dispatch({ type: ActionType.ADDED_ORDER_ROW, payload: foundMovie })
+        }
+      >
+        Buy
+      </StyledButtonPrimary>
       <StyledButtonSecondary>Read more</StyledButtonSecondary>
     </StyledMovieWrapper>
   );
