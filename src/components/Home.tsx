@@ -2,7 +2,7 @@ import { MovieList } from './MovieList';
 import { StyledUL } from './styled/StyledUL';
 import { Sidebar } from './Sidebar';
 import { useContext } from 'react';
-import { MoviesContext } from './context/MoviesContext';
+import { MoviesContext } from '../context/MoviesContext';
 import {
   StyledMain,
   StyledMoviesWrapper,
