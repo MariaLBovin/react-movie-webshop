@@ -14,6 +14,12 @@ const customStyle = css`
 `
 
 export const OrderForm = () => {
+    const handleBuy = () => {
+        console.log('köp');
+        // localStorage.removeItem('order')
+        
+    }
+
   return (
     <>
     <StyledCheckoutWrapper>
@@ -29,7 +35,7 @@ export const OrderForm = () => {
         <StyledInput type='radio' name='Paypal' value='Paypal'></StyledInput>
         Annat
     </StyledLable>
-    <StyledButtonPrimary>Köp</StyledButtonPrimary>
+    <StyledButtonPrimary as='a' href={'./confirmation'} onClick={handleBuy}>Köp</StyledButtonPrimary>
     <StyledButtonSecondary>Rensa</StyledButtonSecondary>
     </StyledCheckoutWrapper>
     </>
