@@ -16,6 +16,7 @@ import { useState } from "react";
 
 export const Home = () => {
   const [movies, setMovies] = useLocalStorage<IMovie[]>("movies", []);
+  const [displayedMovies, setDisplayedMovies] = useState<IMovie[]>(movies);
   const [categories, setCategories] = useLocalStorage<IProductCategory[]>(
     "categories",
     []
@@ -24,20 +25,24 @@ export const Home = () => {
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(search);
+    searchMovies(search);
+  };
+
+  const searchMovies = (search: string) => {
+    const filteredMovies = movies.filter((movie) =>
+      movie.name.toLowerCase().includes(search.toLowerCase())
+    );
+    setDisplayedMovies(filteredMovies);
   };
 
   const getSelectedCategory = (e: React.MouseEvent<HTMLDivElement>) => {
     const selectedCategory = categories.find(
       (category) => category.name === e.currentTarget.innerText
     );
-
     if (selectedCategory) {
       getFilteredMovies(selectedCategory);
     }
   };
-
-  const [displayedMovies, setDisplayedMovies] = useState<IMovie[]>(movies);
 
   const getFilteredMovies = (selectedCategory: IProductCategory) => {
     const filteredMovies = movies.filter((movie) =>
