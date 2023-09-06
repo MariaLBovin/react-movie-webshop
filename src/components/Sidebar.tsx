@@ -33,6 +33,7 @@ export const Sidebar = ({
         <StyledButtonSecondary>Search</StyledButtonSecondary>
       </form>
       <h2>Categories</h2>
+      <div onClick={getSelectedCategory}>All</div>
       {categories.map((category: IProductCategory) => (
         <div key={category.id} onClick={getSelectedCategory}>
           {category.name}

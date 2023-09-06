@@ -39,9 +39,8 @@ export const Home = () => {
     const selectedCategory = categories.find(
       (category) => category.name === e.currentTarget.innerText
     );
-    if (selectedCategory) {
-      getFilteredMovies(selectedCategory);
-    }
+    if (selectedCategory) getFilteredMovies(selectedCategory);
+    else setDisplayedMovies(movies);
   };
 
   const getFilteredMovies = (selectedCategory: IProductCategory) => {
