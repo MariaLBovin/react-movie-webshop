@@ -1,35 +1,17 @@
-
-import { useCategorydata } from "../hooks/useCategoryData";
-import { useMovieData } from "../hooks/useMovieData";
-import { useLocalStorage } from "../hooks/useStorage";
-import { IMovie } from "../models/IMovie";
-import { MovieList } from "./MovieList";
-import { StyledUL } from "./styled/StyledUL";
+import { MovieList } from './MovieList';
+import { StyledUL } from './styled/StyledUL';
+import { Sidebar } from './Sidebar';
+import { useContext } from 'react';
+import { MoviesContext } from './context/MoviesContext';
 import {
   StyledMain,
   StyledMoviesWrapper,
   StyledSidebarWrapper,
-} from "./styled/Wrappers";
-import { IProductCategory } from "../models/IProductCategory";
-import { getCategoriesData, getMoviesData } from "../services/DataService";
-import { Sidebar } from "./Sidebar";
+} from './styled/Wrappers';
 
 export const Home = () => {
-  const [movies, setMovies] = useLocalStorage<IMovie[]>("movies", []);
-  const [categories, setCategories] = useLocalStorage<IProductCategory[]>(
-    "categories",
-    []
-  );
+  const { movies, categories } = useContext(MoviesContext);
 
-  const getData = async () => {
-    const movieList = await getMoviesData();
-    const categoriesList = await getCategoriesData();
-    setMovies(movieList);
-    setCategories(categoriesList);
-  };
-
-  useMovieData(movies, getData);
-  useCategorydata(categories, getData);
   return (
     <>
       <StyledMain>
@@ -39,7 +21,9 @@ export const Home = () => {
         <StyledMoviesWrapper>
           <StyledUL>
             {movies.map((movie) => (
-              <MovieList movie={movie} key={movie.id}></MovieList>
+              <li key={movie.id}>
+                <MovieList movie={movie} />
+              </li>
             ))}
           </StyledUL>
         </StyledMoviesWrapper>
@@ -50,5 +34,4 @@ export const Home = () => {
       ))}
     </>
   );
-
 };
