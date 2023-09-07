@@ -1,34 +1,28 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 import { StyledButtonSecondary } from "./styled/StyledButtonSecondary";
 import { StyledInput } from "./styled/StyledInput";
 import { IProductCategory } from "../models/IProductCategory";
 
-export const Sidebar = () => {
-  const [search, setSearch] = useState("");
+interface ISidebarProps {
+  search: string;
+  setSearch: (search: string) => void;
+  searchSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  getSelectedCategory: (e: React.MouseEvent<HTMLDivElement>) => void;
+}
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    // Waiting for dispatch to be implemented
-    console.log(search);
-  };
-
+export const Sidebar = ({
+  search,
+  setSearch,
+  searchSubmit,
+  getSelectedCategory,
+}: ISidebarProps) => {
   const categories = JSON.parse(
     localStorage.getItem("categories") || "[]"
   ) as IProductCategory[];
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const category = categories.find(
-      (category) => category.name === e.currentTarget.innerText
-    );
-
-    // Waiting for dispatch to be implemented
-    console.log(category);
-  };
-
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={searchSubmit}>
         <StyledInput
           value={search}
           placeholder="Search"
@@ -39,8 +33,9 @@ export const Sidebar = () => {
         <StyledButtonSecondary>Search</StyledButtonSecondary>
       </form>
       <h2>Categories</h2>
+      <div onClick={getSelectedCategory}>All</div>
       {categories.map((category: IProductCategory) => (
-        <div key={category.id} onClick={handleClick}>
+        <div key={category.id} onClick={getSelectedCategory}>
           {category.name}
         </div>
       ))}
