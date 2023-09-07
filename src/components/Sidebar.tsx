@@ -23,7 +23,6 @@ export const Sidebar = ({
   ) as IProductCategory[];
 
   const inputCustomStyle: React.CSSProperties = {
-    width: "100%",
     backgroundColor: "#fff",
     border: "1px solid #000",
     borderRadius: "5px",
@@ -41,7 +40,6 @@ export const Sidebar = ({
           }}
           style={inputCustomStyle}
         />
-        <StyledButtonSecondary>Ok</StyledButtonSecondary>
       </StyledForm>
       <h2>Categories</h2>
       <StyledSelect onChange={getSelectedCategory}>
