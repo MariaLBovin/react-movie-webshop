@@ -3,20 +3,27 @@ import styled from "styled-components";
 export const StyledMain = styled.main`
   display: flex;
   background-color: #f5f0e8;
-  min-height: 100vh;
+  min-height: 80vh;
   width: 100vw;
+  margin-top: 5rem;
 `;
 export const StyledHeader = styled.header`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  height: 5rem;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  background-color: #ffffff;
+  border-bottom: 1px solid black;
 `;
 export const StyledSidebarWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 20vw;
-  height: 100vh;
+  height: calc(100vh - 5rem);
   border-right: 1px solid black;
   position: fixed;
   background-color: #ffffff;
@@ -33,8 +40,7 @@ export const StyledMovieWrapper = styled(StyledMain)`
   flex-direction: column;
 `;
 
-export const StyledCheckoutWrapper = styled(StyledMain) `
+export const StyledCheckoutWrapper = styled(StyledMain)`
   flex-direction: column;
   align-items: center;
-
-`
+`;
