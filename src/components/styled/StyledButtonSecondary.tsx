@@ -7,6 +7,7 @@ export const StyledButtonSecondary = styled.button`
   color: #55acf3;
   padding: 0.75rem 2rem;
   width: 100px;
+  margin: 5px;
 
   &:hover {
     background-color: #55acf3;
