@@ -12,9 +12,7 @@ import { MoviesContext } from "../context/MoviesContext";
 import { IMovieCategory } from "../models/IMovieCategory";
 
 export const Home = () => {
-  const moviesContext = useContext(MoviesContext);
-  const movies = moviesContext.movies;
-  const categories = moviesContext.categories;
+  const { movies, categories } = useContext(MoviesContext);
   const [displayedMovies, setDisplayedMovies] = useState<IMovie[]>(movies);
   const [search, setSearch] = useState("");
 
