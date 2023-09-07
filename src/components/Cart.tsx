@@ -5,7 +5,6 @@ export const Cart = () => {
   const cartMock = localStorage.getItem('cart');
   const cartContent = cartMock ? JSON.parse(cartMock) : [];
 
-
   return (
     <div>
       <p>Din kundvagn:</p>
