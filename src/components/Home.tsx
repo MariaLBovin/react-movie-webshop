@@ -8,13 +8,13 @@ import {
 } from "./styled/Wrappers";
 import { IMovieCategory } from "../models/IMovieCategory";
 import { useState, useContext } from "react";
-import { IMovie } from '../models/IMovie';
-import { MoviesContext } from '../context/MoviesContext';
+import { IMovie } from "../models/IMovie";
+import { MoviesContext } from "../context/MoviesContext";
 
 export const Home = () => {
   const { movies, categories } = useContext(MoviesContext);
-  const [ displayedMovies, setDisplayedMovies ] = useState<IMovie[]>(movies);
-  const [ search, setSearch ] = useState("");
+  const [displayedMovies, setDisplayedMovies] = useState<IMovie[]>(movies);
+  const [search, setSearch] = useState("");
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,9 +28,9 @@ export const Home = () => {
     setDisplayedMovies(filteredMovies);
   };
 
-  const getSelectedCategory = (e: React.MouseEvent<HTMLDivElement>) => {
+  const getSelectedCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedCategory = categories.find(
-      (category) => category.name === e.currentTarget.innerText
+      (category) => category.name === e.currentTarget.value
     );
     if (selectedCategory) getFilteredMovies(selectedCategory);
     else setDisplayedMovies(movies);
