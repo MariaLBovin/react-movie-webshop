@@ -11,7 +11,6 @@ export const StyledHeader = styled.header`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  z-position: -1
 `;
 export const StyledSidebarWrapper = styled.div`
   display: flex;
