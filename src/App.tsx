@@ -8,15 +8,15 @@ import { IMovie } from './models/IMovie';
 import { IProductCategory } from './models/IProductCategory';
 import { Order } from './models/Order';
 import { getMoviesData, getCategoriesData } from './services/DataService';
-import { Reducer, useReducer } from 'react';
-import { IOrderAction, OrderReducer } from './reducers/OrderReducer';
+import { useReducer } from 'react';
+import { OrderReducer } from './reducers/OrderReducer';
 import { OrderContext } from './context/OrderContext';
 import { useGetOrder } from './hooks/useGetOrder';
 
 function App() {
   const [storedOrder, setStoredOrder] = useLocalStorage<Order>(
     'order',
-    new Order(0, null, '', '', 0, null, [])
+    new Order(0, 0, new Date(), '', '', 0, 0, [])
   );
   const [movies, setMovies] = useLocalStorage<IMovie[]>('movies', []);
   const [categories, setCategories] = useLocalStorage<IProductCategory[]>(
@@ -24,10 +24,7 @@ function App() {
     []
   );
 
-  const [order, dispatch] = useReducer(
-    OrderReducer as Reducer<Order, IOrderAction>,
-    storedOrder
-  );
+  const [order, dispatch] = useReducer(OrderReducer, storedOrder);
 
   const getData = async () => {
     const movieList = await getMoviesData();

@@ -4,7 +4,7 @@ import { OrderRow } from '../models/OrderRow';
 
 export interface IOrderAction {
   type: ActionType;
-  payload: IMovie;
+  payload: string;
 }
 
 export enum ActionType {
@@ -16,43 +16,49 @@ export enum ActionType {
 export const OrderReducer = (order: Order, action: IOrderAction) => {
   switch (action.type) {
     case ActionType.ADDED_ORDER_ROW: {
+      const data = JSON.parse(action.payload) as {
+        price: number;
+        amount: number;
+        id: number;
+        name: string;
+      };
       return {
         ...order,
-        totalPrice: order.totalPrice + action.payload.price,
+        totalPrice: order.totalPrice + data.price,
         orderRows: [
           ...order.orderRows,
           new OrderRow(
-            action.payload.id,
-            action.payload.name,
-            action.payload.price,
+            Math.random(),
+            data.id,
+            data.name,
+            data.price,
             1,
             Math.random()
           ),
         ],
       };
     }
-
     case ActionType.REMOVED_ORDER_ROW: {
-      return {
-        ...order,
-        totalPrice: order.totalPrice - action.payload.price,
-        orderRows: order.orderRows.filter(
-          (orderRow) => orderRow.id !== action.payload.id
-        ),
-      };
-    }
+      const data = JSON.parse(action.payload) as IMovie;
 
-    case ActionType.ADDED_CUSTOMER: {
+      const updatedOrderRows = [...order.orderRows];
+
+      const indexToRemove = updatedOrderRows.findIndex(
+        (row) => row.productId === data.id
+      );
+
+      if (indexToRemove !== -1) {
+        updatedOrderRows.splice(indexToRemove, 1);
+      }
+
       return {
         ...order,
-        createdBy: action.payload,
-        paymentMethod: action.payload,
+        totalPrice: order.totalPrice - data.price,
+        orderRows: updatedOrderRows,
       };
     }
 
     default:
-      break;
+      return order;
   }
-
-  return order;
 };
