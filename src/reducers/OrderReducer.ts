@@ -2,9 +2,9 @@ import { IMovie } from '../models/IMovie';
 import { Order } from '../models/Order';
 import { OrderRow } from '../models/OrderRow';
 
-export interface IOrderAction<T> {
+export interface IOrderAction {
   type: ActionType;
-  payload: T;
+  payload: string;
 }
 
 export enum ActionType {
@@ -13,53 +13,52 @@ export enum ActionType {
   ADDED_CUSTOMER,
 }
 
-export const OrderReducer = <T>(order: Order, action: IOrderAction<T>) => {
-  const MOVIE = action.payload as IMovie;
-  // const ORDER = action.payload as Order;
-  // const ORDER_ROW = action.payload as OrderRow;
-
+export const OrderReducer = (order: Order, action: IOrderAction) => {
   switch (action.type) {
     case ActionType.ADDED_ORDER_ROW: {
+      const data = JSON.parse(action.payload) as {
+        price: number;
+        amount: number;
+        id: number;
+        name: string;
+      };
       return {
         ...order,
-        totalPrice: order.totalPrice + MOVIE.price,
+        totalPrice: order.totalPrice + data.price,
         orderRows: [
           ...order.orderRows,
-          new OrderRow(MOVIE.id, MOVIE.name, MOVIE.price, 1, Math.random()),
+          new OrderRow(
+            Math.random(),
+            data.id,
+            data.name,
+            data.price,
+            1,
+            Math.random()
+          ),
         ],
       };
     }
-
     case ActionType.REMOVED_ORDER_ROW: {
-      const indexToRemove = order.orderRows.findIndex(
-        (row) => row.name === MOVIE.name
+      const data = JSON.parse(action.payload) as IMovie;
+
+      const updatedOrderRows = [...order.orderRows];
+
+      const indexToRemove = updatedOrderRows.findIndex(
+        (row) => row.productId === data.id
       );
 
       if (indexToRemove !== -1) {
-        const updatedOrderRows = [...order.orderRows];
-        const removedMovie = updatedOrderRows.splice(indexToRemove, 1)[0];
-
-        return {
-          ...order,
-          totalPrice: order.totalPrice - removedMovie.price,
-          orderRows: updatedOrderRows,
-        };
+        updatedOrderRows.splice(indexToRemove, 1);
       }
 
-      return order;
-    }
-
-    case ActionType.ADDED_CUSTOMER: {
       return {
         ...order,
-        createdBy: action.payload,
-        paymentMethod: action.payload,
+        totalPrice: order.totalPrice - data.price,
+        orderRows: updatedOrderRows,
       };
     }
 
     default:
-      break;
+      return order;
   }
-
-  return order;
 };

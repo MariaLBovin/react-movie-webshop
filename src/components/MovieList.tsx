@@ -13,7 +13,7 @@ interface IMovieProps {
   movie: IMovie;
 }
 export const MovieList = ({ movie }: IMovieProps) => {
-  const { dispatch } = useContext(OrderContext);
+  const { dispatch, order } = useContext(OrderContext);
   return (
     <StyledLi>
       <StyledImage
@@ -29,16 +29,20 @@ export const MovieList = ({ movie }: IMovieProps) => {
       </StyledButtonSecondary>
       <StyledButtonPrimary
         onClick={() =>
-          dispatch({ type: ActionType.ADDED_ORDER_ROW, payload: movie })
+          dispatch({
+            type: ActionType.ADDED_ORDER_ROW,
+            payload: JSON.stringify(movie),
+          })
         }
       >
         Köp
       </StyledButtonPrimary>
       <StyledButtonPrimary
+        disabled={order.orderRows.length === 0}
         onClick={() =>
           dispatch({
             type: ActionType.REMOVED_ORDER_ROW,
-            payload: movie,
+            payload: JSON.stringify(movie),
           })
         }
       >
