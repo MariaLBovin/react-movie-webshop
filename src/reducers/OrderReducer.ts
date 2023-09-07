@@ -1,3 +1,5 @@
+import { ActionType } from '../models/ActionType';
+import { IMovie } from '../models/IMovie';
 import { Order } from '../models/Order';
 import { OrderRow } from '../models/OrderRow';
 
@@ -6,23 +8,10 @@ export interface IOrderAction {
   payload: string;
 }
 
-export enum ActionType {
-  ADDED_ORDER_ROW,
-  REMOVED_ORDER_ROW,
-  INCREASED_AMOUNT,
-  DECREASED_AMOUNT,
-  ADDED_CUSTOMER,
-}
-
 export const OrderReducer = (order: Order, action: IOrderAction) => {
   switch (action.type) {
     case ActionType.ADDED_ORDER_ROW: {
-      const data = JSON.parse(action.payload) as {
-        price: number;
-        amount: number;
-        id: number;
-        name: string;
-      };
+      const data = JSON.parse(action.payload) as IMovie;
 
       const existingRow = order.orderRows.find(
         (row) => row.product === data.name

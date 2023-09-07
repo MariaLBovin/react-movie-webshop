@@ -5,7 +5,7 @@ import { StyledLi } from './styled/StyledLi';
 import { StyledImage } from './styled/StyledImage';
 import { useContext } from 'react';
 import { OrderContext } from '../context/OrderContext';
-import { ActionType } from '../reducers/OrderReducer';
+import { ActionType } from '../models/ActionType';
 
 const fallbackImg = './src/assets/fallbackImg.png';
 
@@ -37,9 +37,6 @@ export const MovieList = ({ movie }: IMovieProps) => {
       >
         Köp
       </StyledButtonPrimary>
-      <button onClick={() => localStorage.removeItem('order')}>
-        ta bort order
-      </button>
     </StyledLi>
   );
 };
