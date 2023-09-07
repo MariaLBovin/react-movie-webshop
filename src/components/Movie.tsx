@@ -37,8 +37,8 @@ export const Movie = () => {
       >
         Buy
       </StyledButtonPrimary>
-      <StyledButtonSecondary>
-        <Link to='/'>Take me back</Link>
+      <StyledButtonSecondary as='a' href='/'>
+        Take me back
       </StyledButtonSecondary>
     </StyledMovieWrapper>
   );
