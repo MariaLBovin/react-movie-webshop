@@ -1,4 +1,3 @@
-import { IMovie } from '../models/IMovie';
 import { Order } from '../models/Order';
 import { OrderRow } from '../models/OrderRow';
 
@@ -39,16 +38,17 @@ export const OrderReducer = (order: Order, action: IOrderAction) => {
       };
     }
     case ActionType.REMOVED_ORDER_ROW: {
-      const data = JSON.parse(action.payload) as IMovie;
-
+      const data = JSON.parse(action.payload) as OrderRow;
       const updatedOrderRows = [...order.orderRows];
 
       const indexToRemove = updatedOrderRows.findIndex(
-        (row) => row.productId === data.id
+        (row) => row.productId === data.productId
       );
 
       if (indexToRemove !== -1) {
         updatedOrderRows.splice(indexToRemove, 1);
+      } else {
+        return order;
       }
 
       return {
