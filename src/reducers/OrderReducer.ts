@@ -69,6 +69,40 @@ export const OrderReducer = (order: Order, action: IOrderAction) => {
       };
     }
 
+    case ActionType.INCREASED_AMOUNT: {
+      const data = JSON.parse(action.payload) as OrderRow;
+
+      const updatedRow = order.orderRows.map((row) => {
+        if (row.product === data.product) {
+          return { ...row, amount: row.amount + 1 };
+        }
+        return row;
+      });
+
+      return {
+        ...order,
+        totalPrice: order.totalPrice + data.price,
+        orderRows: updatedRow,
+      };
+    }
+
+    case ActionType.DECREASED_AMOUNT: {
+      const data = JSON.parse(action.payload) as OrderRow;
+
+      const updatedRow = order.orderRows.map((row) => {
+        if (row.product === data.product) {
+          return { ...row, amount: row.amount - 1 };
+        }
+        return row;
+      });
+
+      return {
+        ...order,
+        totalPrice: order.totalPrice - data.price,
+        orderRows: updatedRow,
+      };
+    }
+
     default:
       return order;
   }

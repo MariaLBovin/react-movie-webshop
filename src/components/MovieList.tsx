@@ -37,6 +37,9 @@ export const MovieList = ({ movie }: IMovieProps) => {
       >
         Köp
       </StyledButtonPrimary>
+      <button onClick={() => localStorage.removeItem('order')}>
+        ta bort order
+      </button>
     </StyledLi>
   );
 };
