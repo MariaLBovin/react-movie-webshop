@@ -2,6 +2,7 @@ import { ChangeEvent } from "react";
 import { StyledButtonSecondary } from "./styled/StyledButtonSecondary";
 import { StyledInput } from "./styled/StyledInput";
 import { IProductCategory } from "../models/IProductCategory";
+import { StyledSelect } from "./styled/StyledSelect";
 
 interface ISidebarProps {
   search: string;
@@ -33,14 +34,14 @@ export const Sidebar = ({
         <StyledButtonSecondary>Search</StyledButtonSecondary>
       </form>
       <h2>Categories</h2>
-      <select onChange={getSelectedCategory}>
+      <StyledSelect onChange={getSelectedCategory}>
         <option value="">All</option>
         {categories.map((category: IProductCategory) => (
           <option key={category.categoryId} value={category.name}>
             {category.name}
           </option>
         ))}
-      </select>
+      </StyledSelect>
     </>
   );
 };
