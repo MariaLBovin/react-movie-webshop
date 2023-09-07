@@ -17,6 +17,6 @@ export const getCategoriesData = async (): Promise<IProductCategory[]> => {
   return await get<IProductCategory[]>(`${BASE_URL}categories/`);
 };
 
-export const postOrderData = async (url: Order): Promise<Order> => {
-  return await post<Order>(url);
+export const postOrderData = async (order: Order): Promise<Order> => {
+  return await post<Order>(`${BASE_URL}/orders/${order}`);
 };

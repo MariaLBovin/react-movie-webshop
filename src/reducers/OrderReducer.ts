@@ -13,11 +13,7 @@ export const OrderReducer = (order: Order, action: IOrderAction) => {
     case ActionType.ADDED_ORDER_ROW: {
       const data = JSON.parse(action.payload) as IMovie;
 
-      const existingRow = order.orderRows.find(
-        (row) => row.product === data.name
-      );
-
-      if (existingRow) {
+      if (order.orderRows.find((row) => row.product === data.name)) {
         const updatedRow = order.orderRows.map((row) => {
           if (row.product === data.name) {
             return { ...row, amount: row.amount + 1 };
