@@ -1,35 +1,46 @@
+import { IMovie } from '../models/IMovie';
+import { StyledButtonPrimary } from './styled/StyledButtonPrimary';
+import { StyledButtonSecondary } from './styled/StyledButtonSecondary';
+import { StyledLi } from './styled/StyledLi';
+import { StyledImage } from './styled/StyledImage';
+import { useContext } from 'react';
+import { OrderContext } from '../context/OrderContext';
+import { ActionType } from '../reducers/OrderReducer';
 
-import { Link } from "react-router-dom"
-import { IMovie } from "../models/IMovie"
-import { StyledButtonPrimary } from "./styled/StyledButtonPrimary"
-import { StyledButtonSecondary } from "./styled/StyledButtonSecondary"
-import { StyledLi } from "./styled/StyledLi"
-import { StyledImage } from "./styled/StyledImage"
-
-const fallbackImg = './src/assets/fallbackImg.png'
+const fallbackImg = './src/assets/fallbackImg.png';
 
 interface IMovieProps {
-    movie: IMovie
+  movie: IMovie;
 }
-export const MovieList = ({movie}: IMovieProps) => {
-  const handleImageError = (event) => {
-    event.target.src = fallbackImg;
-  };
-
-
+export const MovieList = ({ movie }: IMovieProps) => {
+  const { dispatch } = useContext(OrderContext);
   return (
     <StyledLi>
-        <img
-          src={movie.imageUrl}
-          width={250}
-          alt={movie.name}
-          onError={handleImageError} // Lägg till onError-händelse
-        />
-        <h3>{movie.name}</h3>
-
-        <StyledImage src={movie.imageUrl} width={250}></StyledImage>
-        <StyledButtonSecondary as='a' href={'./movie/' + movie.id}>Läs mer</StyledButtonSecondary>
-        <StyledButtonPrimary>Köp</StyledButtonPrimary>
+      <StyledImage
+        src={movie.imageUrl}
+        width={250}
+        onError={(e) => {
+          e.currentTarget.src = fallbackImg;
+        }}
+      ></StyledImage>
+      <h3>{movie.name}</h3>
+      <StyledButtonSecondary as='a' href={'./movie/' + movie.id}>
+        Läs mer
+      </StyledButtonSecondary>
+      <StyledButtonPrimary
+        onClick={() =>
+          dispatch({ type: ActionType.ADDED_ORDER_ROW, payload: movie })
+        }
+      >
+        Köp
+      </StyledButtonPrimary>
+      <StyledButtonPrimary
+        onClick={() =>
+          dispatch({ type: ActionType.REMOVED_ORDER_ROW, payload: movie })
+        }
+      >
+        Ta bort
+      </StyledButtonPrimary>
     </StyledLi>
-  )
-}
+  );
+};

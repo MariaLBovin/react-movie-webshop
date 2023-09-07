@@ -1,9 +1,8 @@
-import { useCategorydata } from "../hooks/useCategoryData";
-import { useMovieData } from "../hooks/useMovieData";
-import { useLocalStorage } from "../hooks/useStorage";
-import { IMovie } from "../models/IMovie";
-import { MovieList } from "./MovieList";
-import { StyledUL } from "./styled/StyledUL";
+import { MovieList } from './MovieList';
+import { StyledUL } from './styled/StyledUL';
+import { Sidebar } from './Sidebar';
+import { useContext } from 'react';
+import { MoviesContext } from '../context/MoviesContext';
 import {
   StyledMain,
   StyledMoviesWrapper,
