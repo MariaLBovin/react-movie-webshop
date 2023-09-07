@@ -6,15 +6,15 @@ import {
   StyledMoviesWrapper,
   StyledSidebarWrapper,
 } from "./styled/Wrappers";
-import { useContext, useState } from "react";
-import { IMovie } from "../models/IMovie";
-import { MoviesContext } from "../context/MoviesContext";
 import { IMovieCategory } from "../models/IMovieCategory";
+import { useState, useContext } from "react";
+import { IMovie } from '../models/IMovie';
+import { MoviesContext } from '../context/MoviesContext';
 
 export const Home = () => {
   const { movies, categories } = useContext(MoviesContext);
-  const [displayedMovies, setDisplayedMovies] = useState<IMovie[]>(movies);
-  const [search, setSearch] = useState("");
+  const [ displayedMovies, setDisplayedMovies ] = useState<IMovie[]>(movies);
+  const [ search, setSearch ] = useState("");
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
