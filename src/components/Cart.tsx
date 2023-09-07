@@ -14,6 +14,9 @@ export const Cart = () => {
         {order.orderRows.map((row) => (
           <div key={row.id}>
             {row.product}
+            <p>
+              antal: {row.amount}, pris: {row.price} kr
+            </p>
             <StyledButtonPrimary
               disabled={order.orderRows.length === 0}
               onClick={() =>
@@ -27,9 +30,11 @@ export const Cart = () => {
             </StyledButtonPrimary>
           </div>
         ))}
-        <p>Totalsumma: {order.totalPrice}</p>
+        <p>Totalsumma: {order.totalPrice} kr</p>
       </ul>
-      <StyledButtonPrimary>TILL KASSAN</StyledButtonPrimary>
+      <StyledButtonPrimary disabled={order.orderRows.length === 0}>
+        TILL KASSAN
+      </StyledButtonPrimary>
     </StyledCart>
   );
 };

@@ -9,6 +9,8 @@ export interface IOrderAction {
 export enum ActionType {
   ADDED_ORDER_ROW,
   REMOVED_ORDER_ROW,
+  INCREASED_AMOUNT,
+  DECREASED_AMOUNT,
   ADDED_CUSTOMER,
 }
 
@@ -21,40 +23,49 @@ export const OrderReducer = (order: Order, action: IOrderAction) => {
         id: number;
         name: string;
       };
-      return {
-        ...order,
-        totalPrice: order.totalPrice + data.price,
-        orderRows: [
-          ...order.orderRows,
-          new OrderRow(
-            Math.random(),
-            data.id,
-            data.name,
-            data.price,
-            1,
-            Math.random()
-          ),
-        ],
-      };
-    }
-    case ActionType.REMOVED_ORDER_ROW: {
-      const data = JSON.parse(action.payload) as OrderRow;
-      const updatedOrderRows = [...order.orderRows];
 
-      const indexToRemove = updatedOrderRows.findIndex(
-        (row) => row.productId === data.productId
+      const existingRow = order.orderRows.find(
+        (row) => row.product === data.name
       );
 
-      if (indexToRemove !== -1) {
-        updatedOrderRows.splice(indexToRemove, 1);
+      if (existingRow) {
+        const updatedRow = order.orderRows.map((row) => {
+          if (row.product === data.name) {
+            return { ...row, amount: row.amount + 1 };
+          }
+          return row;
+        });
+        return {
+          ...order,
+          totalPrice: order.totalPrice + data.price,
+          orderRows: updatedRow,
+        };
       } else {
-        return order;
+        return {
+          ...order,
+          totalPrice: order.totalPrice + data.price,
+          orderRows: [
+            ...order.orderRows,
+            new OrderRow(
+              Math.random(),
+              data.id,
+              data.name,
+              data.price,
+              1,
+              Math.random()
+            ),
+          ],
+        };
       }
+    }
+
+    case ActionType.REMOVED_ORDER_ROW: {
+      const data = JSON.parse(action.payload) as OrderRow;
 
       return {
         ...order,
-        totalPrice: order.totalPrice - data.price,
-        orderRows: updatedOrderRows,
+        totalPrice: order.totalPrice - data.price * data.amount,
+        orderRows: [...order.orderRows.filter((row) => row.id !== data.id)],
       };
     }
 
