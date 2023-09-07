@@ -1,21 +1,22 @@
-import { IMovie } from "../models/IMovie";
+import { OrderContext } from "../context/OrderContext";
 import { StyledButtonPrimary } from "./styled/StyledButtonPrimary";
+import { useContext } from "react"
+import { MoviesContext } from "../context/MoviesContext";
+import { ActionType } from "../reducers/OrderReducer";
 
 export const Cart = () => {
-  const cartMock = localStorage.getItem('cart');
-  const cartContent = cartMock ? JSON.parse(cartMock) : [];
-
+  const {movies} = useContext(MoviesContext)
+  const {order, dispatch} = useContext(OrderContext)
+        
   return (
     <div>
       <p>Din kundvagn:</p>
       <ul>
-        {cartContent.map((movie: IMovie) => (
-          <li key={movie.id}>
-            {movie.name} {movie.price}
-          </li>
-        ))}
+        {order.orderRows.map((row) => 
+          <div key={row.id}>{row.name}</div>)}
+      <p>Totalsumma: { order.totalPrice }</p>
       </ul>
-            <StyledButtonPrimary>TILL KASSAN</StyledButtonPrimary>
+      <StyledButtonPrimary>TILL KASSAN</StyledButtonPrimary>
       </div>
     );
   };
