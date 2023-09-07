@@ -13,9 +13,8 @@ export const Layout = () => {
         <Header />
       </StyledHeader>
       <StyledSpan>
-        <CartSpan/>
       </StyledSpan>
-      
+      <CartSpan/>
         <Outlet />
     </>
   );
