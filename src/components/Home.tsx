@@ -1,8 +1,6 @@
 import { MovieList } from './MovieList';
 import { StyledUL } from './styled/StyledUL';
 import { Sidebar } from './Sidebar';
-import { useContext } from 'react';
-import { MoviesContext } from '../context/MoviesContext';
 import {
   StyledMain,
   StyledMoviesWrapper,
@@ -10,16 +8,17 @@ import {
 } from "./styled/Wrappers";
 import { IProductCategory } from "../models/IProductCategory";
 import { getCategoriesData, getMoviesData } from "../services/DataService";
-import { Sidebar } from "./Sidebar";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { useCategorydata } from '../hooks/useCategoryData';
+import { useMovieData } from '../hooks/useMovieData';
+import { IMovie } from '../models/IMovie';
+import { MoviesContext } from '../context/MoviesContext';
+
 
 export const Home = () => {
-  const [movies, setMovies] = useLocalStorage<IMovie[]>("movies", []);
+  const {movies, categories} = useContext(MoviesContext)
   const [displayedMovies, setDisplayedMovies] = useState<IMovie[]>(movies);
-  const [categories, setCategories] = useLocalStorage<IProductCategory[]>(
-    "categories",
-    []
-  );
+
   const [search, setSearch] = useState("");
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
@@ -45,21 +44,47 @@ export const Home = () => {
   const getFilteredMovies = (selectedCategory: IProductCategory) => {
     const filteredMovies = movies.filter((movie) =>
       movie.productCategory.some(
-        (category) => category.categoryId === selectedCategory.id
+        (category) => category.id === selectedCategory.id
       )
     );
     setDisplayedMovies(filteredMovies);
   };
 
-  const getData = async () => {
-    const movieList = await getMoviesData();
-    const categoriesList = await getCategoriesData();
-    setMovies(movieList);
-    setCategories(categoriesList);
-  };
+  // const {movies, categories} = useContext(MoviesContext)
 
-  useMovieData(movies, getData);
-  useCategorydata(categories, getData);
+  // const [displayedMovies, setDisplayedMovies] = useState<IMovie[]>(movies);
+
+  // const [search, setSearch] = useState("");
+
+  // const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   searchMovies(search);
+  // };
+
+  // const searchMovies = (search: string) => {
+  //   const filteredMovies = movies.filter((movie) =>
+  //     movie.name.toLowerCase().includes(search.toLowerCase())
+  //   );
+  //   setDisplayedMovies(filteredMovies);
+  // };
+
+  // const getSelectedCategory = (e: React.MouseEvent<HTMLDivElement>) => {
+  //   const selectedCategory = categories.find(
+  //     (category) => category.name === e.currentTarget.innerText
+  //   );
+  //   if (selectedCategory) getFilteredMovies(selectedCategory);
+  //   else setDisplayedMovies(movies);
+  // };
+
+  // const getFilteredMovies = (selectedCategory: IProductCategory) => {
+  //   const filteredMovies = movies.filter((movie) =>
+  //     movie.productCategory.some(
+  //       (category) => category.id === selectedCategory.id
+  //     )
+  //   );
+  //   setDisplayedMovies(filteredMovies);
+  // };
+
 
   return (
     <>
