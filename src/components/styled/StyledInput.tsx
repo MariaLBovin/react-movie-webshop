@@ -10,8 +10,7 @@ export const StyledInput = styled.input<StyledInputProps>`
   background: grey;
   color: #000000;
   width: 50%;
-  ${(props) => props.customStyle}; 
+  ${(props) => props.customStyle};
 `;
 
 export default StyledInput;
-
