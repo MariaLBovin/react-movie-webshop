@@ -3,13 +3,14 @@ import { StyledButtonPrimary } from "./styled/StyledButtonPrimary";
 import { useContext } from "react"
 import { MoviesContext } from "../context/MoviesContext";
 import { ActionType } from "../reducers/OrderReducer";
+import { StyledCart } from "./styled/StyledCart";
 
 export const Cart = () => {
   const {movies} = useContext(MoviesContext)
   const {order, dispatch} = useContext(OrderContext)
         
   return (
-    <div>
+    <StyledCart>
       <p>Din kundvagn:</p>
       <ul>
         {order.orderRows.map((row) => 
@@ -17,6 +18,6 @@ export const Cart = () => {
       <p>Totalsumma: { order.totalPrice }</p>
       </ul>
       <StyledButtonPrimary>TILL KASSAN</StyledButtonPrimary>
-      </div>
+      </StyledCart>
     );
   };
