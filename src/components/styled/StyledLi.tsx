@@ -10,4 +10,5 @@ export const StyledLi = styled.li`
   padding: 1rem;
   background-color: #ffffff;
   border-radius: 5px;
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2);
 `;
