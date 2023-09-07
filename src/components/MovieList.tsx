@@ -6,6 +6,7 @@ import { StyledImage } from './styled/StyledImage';
 import { useContext } from 'react';
 import { OrderContext } from '../context/OrderContext';
 import { ActionType } from '../reducers/OrderReducer';
+import { OrderRow } from '../models/OrderRow';
 
 const fallbackImg = './src/assets/fallbackImg.png';
 
