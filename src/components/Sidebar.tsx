@@ -3,6 +3,7 @@ import { StyledButtonSecondary } from "./styled/StyledButtonSecondary";
 import { StyledInput } from "./styled/StyledInput";
 import { IProductCategory } from "../models/IProductCategory";
 import { StyledSelect } from "./styled/StyledSelect";
+import { StyledForm } from "./styled/StyledForm";
 
 interface ISidebarProps {
   search: string;
@@ -21,18 +22,27 @@ export const Sidebar = ({
     localStorage.getItem("categories") || "[]"
   ) as IProductCategory[];
 
+  const inputCustomStyle: React.CSSProperties = {
+    width: "100%",
+    backgroundColor: "#fff",
+    border: "1px solid #000",
+    borderRadius: "5px",
+    padding: "5px",
+  };
+
   return (
     <>
-      <form onSubmit={searchSubmit}>
+      <StyledForm onSubmit={searchSubmit}>
         <StyledInput
           value={search}
           placeholder="Search"
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
             setSearch(e.target.value);
           }}
+          style={inputCustomStyle}
         />
-        <StyledButtonSecondary>Search</StyledButtonSecondary>
-      </form>
+        <StyledButtonSecondary>Ok</StyledButtonSecondary>
+      </StyledForm>
       <h2>Categories</h2>
       <StyledSelect onChange={getSelectedCategory}>
         <option value="">All</option>

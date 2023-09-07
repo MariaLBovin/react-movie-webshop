@@ -1,15 +1,12 @@
 import { MovieList } from "./MovieList";
 import { StyledUL } from "./styled/StyledUL";
 import { Sidebar } from "./Sidebar";
-import {
-  StyledMain,
-  StyledMoviesWrapper,
-  StyledSidebarWrapper,
-} from "./styled/Wrappers";
+import { StyledMain, StyledMoviesWrapper } from "./styled/Wrappers";
 import { IMovieCategory } from "../models/IMovieCategory";
 import { useState, useContext } from "react";
 import { IMovie } from "../models/IMovie";
 import { MoviesContext } from "../context/MoviesContext";
+import { StyledSidebar } from "./styled/StyledSidebar";
 
 export const Home = () => {
   const { movies, categories } = useContext(MoviesContext);
@@ -49,14 +46,14 @@ export const Home = () => {
   return (
     <>
       <StyledMain>
-        <StyledSidebarWrapper>
+        <StyledSidebar>
           <Sidebar
             search={search}
             setSearch={setSearch}
             searchSubmit={handleSearch}
             getSelectedCategory={getSelectedCategory}
           />
-        </StyledSidebarWrapper>
+        </StyledSidebar>
         <StyledMoviesWrapper>
           <StyledUL>
             {displayedMovies.map((movie) => (

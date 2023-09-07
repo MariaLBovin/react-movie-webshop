@@ -10,7 +10,7 @@ export const StyledButtonPrimary = styled.button`
   width: 100px;
 
   &:hover {
-    background-color: #ffffff;
+    background-color: #96d0ff;
     color: black;
   }
 `;

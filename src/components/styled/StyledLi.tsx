@@ -4,8 +4,9 @@ export const StyledLi = styled.li`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   margin: 10px;
-  min-width: 30%;
+  width: 250px;
   border: 1px solid black;
   padding: 1rem;
   background-color: #ffffff;
