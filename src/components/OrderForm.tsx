@@ -1,10 +1,8 @@
 import { css } from "styled-components"
 import { StyledInput } from "./styled/StyledInput"
-import { StyledCheckoutWrapper } from "./styled/Wrappers"
 import { StyledLable } from "./styled/StyledLabel"
 import { StyledH2 } from "./styled/StyledH2"
-import { StyledButtonPrimary } from "./styled/StyledButtonPrimary"
-import { StyledButtonSecondary } from "./styled/StyledButtonSecondary"
+import { useState } from "react"
 
 const customStyle = css`
     width: 30%;
@@ -14,18 +12,25 @@ const customStyle = css`
 `
 
 export const OrderForm = () => {
-    const handleBuy = () => {
-        console.log('köp');
-        // localStorage.removeItem('order')
-        
-    }
+
+  const [createdBy, setCreatedBy] = useState('');
+  const [companyId, setCompanyId] = useState('')
 
   return (
     <>
-    <StyledCheckoutWrapper>
     <StyledH2>Beställningsformulär</StyledH2>
-    <StyledInput placeholder="Namn" customStyle={customStyle} ></StyledInput>
-    <StyledInput placeholder="Företags-id" customStyle={customStyle} ></StyledInput>
+    <StyledInput 
+    placeholder="Namn" 
+    customStyle={customStyle} 
+    onChange={(e) => setCreatedBy(e.target.value)} 
+    >
+    </StyledInput>
+    <StyledInput 
+    placeholder="Företags-id" 
+    customStyle={customStyle} 
+    onChange = {(e) => setCompanyId(e.target.value)}
+    >
+    </StyledInput>
     <StyledH2>Betalningsalternativ</StyledH2>
     <StyledLable>
         <StyledInput type='radio' name='Paypal' value='Paypal'></StyledInput>
@@ -35,9 +40,6 @@ export const OrderForm = () => {
         <StyledInput type='radio' name='Paypal' value='Paypal'></StyledInput>
         Annat
     </StyledLable>
-    <StyledButtonPrimary as='a' href={'./confirmation'} onClick={handleBuy}>Köp</StyledButtonPrimary>
-    <StyledButtonSecondary>Rensa</StyledButtonSecondary>
-    </StyledCheckoutWrapper>
     </>
   )
 }
