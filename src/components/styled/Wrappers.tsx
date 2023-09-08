@@ -7,6 +7,7 @@ export const StyledMain = styled.main`
   width: 100vw;
   margin-top: 5rem;
 `;
+
 export const StyledHeader = styled.header`
   display: flex;
   flex-direction: row;
@@ -20,15 +21,7 @@ export const StyledHeader = styled.header`
   border-bottom: 1px solid black;
   box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2);
 `;
-export const StyledSidebarWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 20vw;
-  height: calc(100vh - 5rem);
-  border-right: 1px solid black;
-  position: fixed;
-  background-color: #ffffff;
-`;
+
 export const StyledMoviesWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -51,4 +44,9 @@ export const StyledMovieWrapper = styled.div`
 export const StyledCheckoutWrapper = styled(StyledMain)`
   flex-direction: column;
   align-items: center;
+`;
+
+export const StyledButtonWrapper = styled.div`
+  display: flex;
+  height: 60px;
 `;
