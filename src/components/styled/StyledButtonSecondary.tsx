@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledButtonSecondary = styled.button`
   background-color: #fff;
@@ -7,6 +7,7 @@ export const StyledButtonSecondary = styled.button`
   color: #55acf3;
   padding: 0.75rem 2rem;
   width: 100px;
+  cursor: pointer;
 
   &:hover {
     background-color: #55acf3;
