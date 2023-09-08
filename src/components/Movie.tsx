@@ -1,13 +1,13 @@
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { IMovie } from '../models/IMovie';
 import { StyledMovieWrapper } from './styled/Wrappers';
 import { StyledButtonPrimary } from './styled/StyledButtonPrimary';
 import { StyledButtonSecondary } from './styled/StyledButtonSecondary';
-import { StyledImage } from './styled/StyledImage';
 import { useContext } from 'react';
 import { MoviesContext } from '../context/MoviesContext';
 import { OrderContext } from '../context/OrderContext';
 import { ActionType } from '../models/ActionType';
+import { StyledMovieImage } from './styled/StyledMovieImage';
 // import { OrderContext } from '../context/OrderContext';
 
 export const Movie = () => {
@@ -23,7 +23,7 @@ export const Movie = () => {
 
   return (
     <StyledMovieWrapper>
-      <StyledImage src={foundMovie.imageUrl} alt={foundMovie.name} />
+      <StyledMovieImage src={foundMovie.imageUrl} alt={foundMovie.name} />
       <h2>{foundMovie.name}</h2>
       <p>{foundMovie.description}</p>
       <p>{foundMovie.price}kr</p>
