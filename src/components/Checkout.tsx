@@ -13,7 +13,8 @@ import { ActionType } from "../reducers/OrderReducer";
 export const Checkout = () => {
   const {dispatch, order} = useContext(OrderContext)
 
-  const handleFormData = (formData :IFormData ) => {
+  const handleFormData = (formData :IFormData) => {
+
     dispatch({type: ActionType.ADDED_CUSTOMER, payload: JSON.stringify(formData)})
     console.log(formData);
     

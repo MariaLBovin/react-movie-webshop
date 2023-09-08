@@ -15,26 +15,27 @@ interface IFormDataProps {
 }
 
 export const OrderForm = ({saveFormData} :IFormDataProps) => {
+  const [inputValue, setInputValue] = useState('')
+  const [paymentValue, setPaymentValue] = useState('')
 
-  const [formData, setFormData] = useState({
-    createdBy: '',
-    paymentMethod: ''
-  })
+  const handleSubmit = (e) => {
+      setInputValue(e.target.value);
+      setPaymentValue(paymentValue)
 
-  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
-    const {name ,value} = e.target;
-    setFormData({...formData, [name]: value})
+      const formData = {createdBy:inputValue, paymentMethod: paymentValue}
 
-    saveFormData(formData)
+      saveFormData(formData)
+
   }
 
   return (
     <>
+    <form onSubmit={handleSubmit}>
     <StyledH2>Beställningsformulär</StyledH2>
     <StyledInput 
     type='text'
     placeholder="Namn" 
-    value={formData.createdBy}
+    value={inputValue}
     onChange={handleInput} 
     >
     </StyledInput>
@@ -44,7 +45,7 @@ export const OrderForm = ({saveFormData} :IFormDataProps) => {
         type='radio' 
         name='Paypal' 
         value='Paypal'
-        checked = {formData.paymentMethod === 'Paypal'}
+        checked = {paymentValue === 'Paypal'}
         onChange={handleInput}
         >
         </StyledInput>
@@ -55,12 +56,13 @@ export const OrderForm = ({saveFormData} :IFormDataProps) => {
         type='radio' 
         name='Paypal' 
         value='Paypal'
-        checked={formData.paymentMethod === null}
+        checked={paymentValue === null}
         onChange={handleInput}
         >
         </StyledInput>
         Annat
     </StyledLable>
+    </form>
     </>
   )
 }
