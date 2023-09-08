@@ -8,7 +8,7 @@ export interface IOrderContext {
 }
 
 export const OrderContext = createContext<IOrderContext>({
-  order: new Order(0, null, '', '', 0, null, []),
+  order: new Order(0, 0, new Date(), '', '', 0, 0, []),
   dispatch: () => {
     return;
   },

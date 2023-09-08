@@ -10,12 +10,6 @@ import { StyledButtonWrapper } from "./styled/Wrappers";
 import { StyledMovieCardBottomSection } from "./styled/StyledMovieCardBottomSection";
 
 const fallbackImg = "./src/assets/fallbackImg.png";
-// const bottomSectionStyle: React.CSSProperties = {
-//   display: "flex",
-//   flexDirection: "column",
-//   alignItems: "center",
-//   padding: "1rem",
-// };
 
 interface IMovieProps {
   movie: IMovie;
@@ -46,13 +40,6 @@ export const MovieList = ({ movie }: IMovieProps) => {
           >
             Köp
           </StyledButtonPrimary>
-          <StyledButtonSecondary
-            onClick={() =>
-              dispatch({ type: ActionType.REMOVED_ORDER_ROW, payload: movie })
-            }
-          >
-            Ta bort
-          </StyledButtonSecondary>
         </StyledButtonWrapper>
       </StyledMovieCardBottomSection>
     </StyledLi>

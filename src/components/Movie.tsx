@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { IMovie } from '../models/IMovie';
 import { StyledMovieWrapper } from './styled/Wrappers';
 import { StyledButtonPrimary } from './styled/StyledButtonPrimary';
@@ -7,7 +7,8 @@ import { StyledImage } from './styled/StyledImage';
 import { useContext } from 'react';
 import { MoviesContext } from '../context/MoviesContext';
 import { OrderContext } from '../context/OrderContext';
-import { ActionType } from '../reducers/OrderReducer';
+import { ActionType } from '../models/ActionType';
+// import { OrderContext } from '../context/OrderContext';
 
 export const Movie = () => {
   const { id } = useParams();
@@ -28,12 +29,17 @@ export const Movie = () => {
       <p>{foundMovie.price}kr</p>
       <StyledButtonPrimary
         onClick={() =>
-          dispatch({ type: ActionType.ADDED_ORDER_ROW, payload: foundMovie })
+          dispatch({
+            type: ActionType.ADDED_ORDER_ROW,
+            payload: JSON.stringify(foundMovie),
+          })
         }
       >
         Buy
       </StyledButtonPrimary>
-      <StyledButtonSecondary>Read more</StyledButtonSecondary>
+      <StyledButtonSecondary as='a' href='/'>
+        Take me back
+      </StyledButtonSecondary>
     </StyledMovieWrapper>
   );
 };
