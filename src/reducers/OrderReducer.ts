@@ -57,7 +57,18 @@ export const OrderReducer = (order: Order, action: IOrderAction) => {
         orderRows: updatedOrderRows,
       };
     }
+    case ActionType.ADDED_CUSTOMER: {
+      const data = JSON.parse(action.payload) as {
+        createdBy: string,
+        paymentMethod: string,
+      }
+      return {
+          ... order, 
+          createdBy: data.createdBy,
+          paymentMethod: data.paymentMethod
 
+      }
+    }
     default:
       return order;
   }
