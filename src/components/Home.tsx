@@ -2,8 +2,7 @@ import { MovieList } from "./MovieList";
 import { StyledUL } from "./styled/StyledUL";
 import { Sidebar } from "./Sidebar";
 import { StyledMain, StyledMoviesWrapper } from "./styled/Wrappers";
-import { IMovieCategory } from "../models/IMovieCategory";
-import { IProductCategory } from '../models/IProductCategory';
+import { IProductCategory } from "../models/IProductCategory";
 import { useState, useContext } from "react";
 import { IMovie } from "../models/IMovie";
 import { MoviesContext } from "../context/MoviesContext";
@@ -12,7 +11,7 @@ import { StyledSidebar } from "./styled/StyledSidebar";
 export const Home = () => {
   const { movies, categories } = useContext(MoviesContext);
   const [displayedMovies, setDisplayedMovies] = useState<IMovie[]>(movies);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

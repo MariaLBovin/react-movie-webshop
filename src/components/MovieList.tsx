@@ -5,9 +5,9 @@ import { StyledLi } from "./styled/StyledLi";
 import { StyledImage } from "./styled/StyledImage";
 import { useContext } from "react";
 import { OrderContext } from "../context/OrderContext";
-import { ActionType } from "../reducers/OrderReducer";
 import { StyledButtonWrapper } from "./styled/Wrappers";
 import { StyledMovieCardBottomSection } from "./styled/StyledMovieCardBottomSection";
+import { ActionType } from "../models/ActionType";
 
 const fallbackImg = "./src/assets/fallbackImg.png";
 
@@ -35,11 +35,24 @@ export const MovieList = ({ movie }: IMovieProps) => {
         <StyledButtonWrapper>
           <StyledButtonPrimary
             onClick={() =>
-              dispatch({ type: ActionType.ADDED_ORDER_ROW, payload: movie })
+              dispatch({
+                type: ActionType.ADDED_ORDER_ROW,
+                payload: JSON.stringify(movie),
+              })
             }
           >
             Köp
           </StyledButtonPrimary>
+          <StyledButtonSecondary
+            onClick={() =>
+              dispatch({
+                type: ActionType.REMOVED_ORDER_ROW,
+                payload: JSON.stringify(movie),
+              })
+            }
+          >
+            Ta bort
+          </StyledButtonSecondary>
         </StyledButtonWrapper>
       </StyledMovieCardBottomSection>
     </StyledLi>

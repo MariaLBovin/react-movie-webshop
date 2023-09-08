@@ -1,7 +1,7 @@
-import { ActionType } from '../models/ActionType';
-import { IMovie } from '../models/IMovie';
-import { Order } from '../models/Order';
-import { OrderRow } from '../models/OrderRow';
+import { ActionType } from "../models/ActionType";
+import { IMovie } from "../models/IMovie";
+import { Order } from "../models/Order";
+import { OrderRow } from "../models/OrderRow";
 
 export interface IOrderAction {
   type: ActionType;
@@ -18,8 +18,10 @@ export const OrderReducer = (order: Order, action: IOrderAction) => {
           if (row.product === data.name) {
             return { ...row, amount: row.amount + 1 };
           }
+
           return row;
         });
+
         return {
           ...order,
           totalPrice: order.totalPrice + data.price,
@@ -56,7 +58,6 @@ export const OrderReducer = (order: Order, action: IOrderAction) => {
 
     case ActionType.INCREASED_AMOUNT: {
       const data = JSON.parse(action.payload) as OrderRow;
-
       const updatedRow = order.orderRows.map((row) => {
         if (row.product === data.product) {
           return { ...row, amount: row.amount + 1 };
@@ -73,11 +74,11 @@ export const OrderReducer = (order: Order, action: IOrderAction) => {
 
     case ActionType.DECREASED_AMOUNT: {
       const data = JSON.parse(action.payload) as OrderRow;
-
       const updatedRow = order.orderRows.map((row) => {
         if (row.product === data.product) {
           return { ...row, amount: row.amount - 1 };
         }
+
         return row;
       });
 

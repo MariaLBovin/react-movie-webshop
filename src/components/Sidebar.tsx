@@ -1,5 +1,4 @@
 import { ChangeEvent } from "react";
-import { StyledInput } from "./styled/StyledInput";
 import { IProductCategory } from "../models/IProductCategory";
 import { StyledSelect } from "./styled/StyledSelect";
 import { StyledForm } from "./styled/StyledForm";
@@ -20,7 +19,7 @@ export const Sidebar = ({
   getSelectedCategory,
 }: ISidebarProps) => {
   const categories = JSON.parse(
-    localStorage.getItem('categories') || '[]'
+    localStorage.getItem("categories") || "[]"
   ) as IProductCategory[];
 
   return (
@@ -28,7 +27,7 @@ export const Sidebar = ({
       <StyledForm onSubmit={searchSubmit}>
         <StyledSearchInput
           value={search}
-          placeholder='Search'
+          placeholder="Search"
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
             setSearch(e.target.value);
           }}
@@ -36,7 +35,7 @@ export const Sidebar = ({
       </StyledForm>
       <StyledH2>Categories</StyledH2>
       <StyledSelect onChange={getSelectedCategory}>
-        <option value=''>All</option>
+        <option value="">All</option>
         {categories.map((category: IProductCategory) => (
           <option key={category.categoryId} value={category.name}>
             {category.name}
