@@ -27,14 +27,7 @@ export const OrderReducer = (order: Order, action: IOrderAction) => {
         totalPrice: order.totalPrice + data.price,
         orderRows: [
           ...order.orderRows,
-          new OrderRow(
-            Math.random(),
-            data.id,
-            data.name,
-            data.price,
-            1,
-            Math.random()
-          ),
+          new OrderRow(data.id, data.name, data.price, 1, Math.random()),
         ],
       };
     }
@@ -44,7 +37,7 @@ export const OrderReducer = (order: Order, action: IOrderAction) => {
       const updatedOrderRows = [...order.orderRows];
 
       const indexToRemove = updatedOrderRows.findIndex(
-        (row) => row.productId === data.id
+        (row) => row.product === data.name
       );
 
       if (indexToRemove !== -1) {
@@ -58,10 +51,7 @@ export const OrderReducer = (order: Order, action: IOrderAction) => {
       };
     }
     case ActionType.ADDED_CUSTOMER: {
-      const data = JSON.parse(action.payload) as {
-        createdBy: string;
-        paymentMethod: string;
-      };
+      const data = JSON.parse(action.payload) as Order;
       console.log("data: ", data);
 
       return {

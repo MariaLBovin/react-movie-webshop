@@ -6,28 +6,14 @@ import { OrderList } from "./OrderList";
 import { StyledCheckoutWrapper } from "./styled/Wrappers";
 import { StyledH2 } from "./styled/StyledH2";
 import { StyledButtonSecondary } from "./styled/StyledButtonSecondary";
-import { ActionType } from "../reducers/OrderReducer";
 
 export const Checkout = () => {
-  const { dispatch, order } = useContext(OrderContext);
-
-  const saveFormData = (formData: FormData) => {
-    // handleBuy(formData);
-
-    dispatch({
-      type: ActionType.ADDED_CUSTOMER,
-      payload: JSON.stringify(formData),
-    });
-  };
-
-  // const handleBuy = (formData: FormData) => {
-  //   console.log("formData: ", formData);
-  //   // localStorage.removeItem('order')
-  // };
+  const { order } = useContext(OrderContext);
 
   const handleReset = () => {
     console.log("rensa");
   };
+
   return (
     <>
       <StyledCheckoutWrapper>
@@ -37,7 +23,7 @@ export const Checkout = () => {
           ))}
         </StyledUL>
         <StyledH2>Total beställningssumma: {order.totalPrice} kr</StyledH2>
-        <OrderForm saveFormData={saveFormData}></OrderForm>
+        <OrderForm></OrderForm>
         <StyledButtonSecondary onClick={handleReset}>
           Rensa
         </StyledButtonSecondary>

@@ -1,6 +1,6 @@
 export class OrderRow {
   constructor(
-    public id: number,
+    // public _id: number,
     public productId: number,
     public product: string,
     public price: number,

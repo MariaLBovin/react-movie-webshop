@@ -1,10 +1,10 @@
-import { OrderRow } from './OrderRow';
+import { OrderRow } from "./OrderRow";
 
 export class Order {
   constructor(
-    public id: number,
+    // public _id: number,
     public companyId: number | null,
-    public created: Date,
+    public created: string,
     public createdBy: string,
     public paymentMethod: string,
     public totalPrice: number,

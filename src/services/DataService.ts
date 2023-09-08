@@ -1,9 +1,10 @@
-import { IMovie } from '../models/IMovie';
-import { IProductCategory } from '../models/IProductCategory';
-import { Order } from '../models/Order';
-import { get, post } from './DataServiceBase';
+import axios from "axios";
+import { IMovie } from "../models/IMovie";
+import { IProductCategory } from "../models/IProductCategory";
+import { Order } from "../models/Order";
+import { get } from "./DataServiceBase";
 
-const BASE_URL = 'https://medieinstitutet-wie-products.azurewebsites.net/api/';
+const BASE_URL = "https://medieinstitutet-wie-products.azurewebsites.net/api/";
 
 export const getMoviesData = async (): Promise<IMovie[]> => {
   return await get<IMovie[]>(`${BASE_URL}products`);
@@ -17,6 +18,16 @@ export const getCategoriesData = async (): Promise<IProductCategory[]> => {
   return await get<IProductCategory[]>(`${BASE_URL}categories/`);
 };
 
-export const postOrderData = async (url: Order): Promise<Order> => {
-  return await post<Order>(url);
+export const postOrder = async (order: Order) => {
+  console.log(order);
+
+  try {
+    const response = await axios.post(`${BASE_URL}orders`, order);
+    console.log(response.data);
+
+    return response.data;
+  } catch (error) {
+    console.error("lyckades inte skicka data", error);
+    throw error;
+  }
 };

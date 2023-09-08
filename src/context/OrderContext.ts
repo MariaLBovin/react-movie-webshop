@@ -1,6 +1,6 @@
-import { Dispatch, createContext } from 'react';
-import { Order } from '../models/Order';
-import { IOrderAction } from '../reducers/OrderReducer';
+import { Dispatch, createContext } from "react";
+import { Order } from "../models/Order";
+import { IOrderAction } from "../reducers/OrderReducer";
 
 export interface IOrderContext {
   order: Order;
@@ -8,7 +8,8 @@ export interface IOrderContext {
 }
 
 export const OrderContext = createContext<IOrderContext>({
-  order: new Order(0, 0, new Date(), '', '', 0, 0, []),
+  order: new Order(0, new Date().toISOString(), "", "", 0, 0, []),
+
   dispatch: () => {
     return;
   },

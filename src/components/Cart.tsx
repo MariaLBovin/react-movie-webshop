@@ -16,7 +16,7 @@ export const Cart = ({ toggleCart }: ICartProps) => {
       <p>Din kundvagn:</p>
       <ul>
         {order.orderRows.map((row) => (
-          <div key={row.id}>{row.product}</div>
+          <div key={row.productId}>{row.product}</div>
         ))}
         <p>Totalsumma: {order.totalPrice}</p>
       </ul>

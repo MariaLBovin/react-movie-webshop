@@ -1,19 +1,18 @@
-import { css } from "styled-components";
 import { StyledInput } from "./styled/StyledInput";
 import { StyledLable } from "./styled/StyledLabel";
 import { StyledH2 } from "./styled/StyledH2";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import { StyledButtonPrimary } from "./styled/StyledButtonPrimary";
+import { ActionType } from "../reducers/OrderReducer";
+import { OrderContext } from "../context/OrderContext";
+import { postOrder } from "../services/DataService";
 
 export class FormData {
   constructor(public createdBy: string, public paymentMethod: string) {}
 }
 
-interface IOrderFormProps {
-  saveFormData: (data: FormData) => void;
-}
-
-export const OrderForm = ({ saveFormData }: IOrderFormProps) => {
+export const OrderForm = () => {
+  const { dispatch, order } = useContext(OrderContext);
   const [formState, setFormState] = useState({
     inputValue: "",
     paymentValue: "",
@@ -24,7 +23,15 @@ export const OrderForm = ({ saveFormData }: IOrderFormProps) => {
     const formData = new FormData(formState.inputValue, formState.paymentValue);
     console.log("formData: ", formData);
 
-    saveFormData(formData);
+    dispatch({
+      type: ActionType.ADDED_CUSTOMER,
+      payload: JSON.stringify(formData),
+    });
+
+    console.log(order);
+
+    postOrder(order);
+    localStorage.removeItem("order");
   };
 
   const handleInputValue = (e: ChangeEvent<HTMLInputElement>) => {
