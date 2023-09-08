@@ -1,20 +1,20 @@
-import { MovieList } from "./MovieList";
-import { StyledUL } from "./styled/StyledUL";
-import { Sidebar } from "./Sidebar";
+import { MovieList } from './MovieList';
+import { StyledUL } from './styled/StyledUL';
+import { Sidebar } from './Sidebar';
 import {
   StyledMain,
   StyledMoviesWrapper,
   StyledSidebarWrapper,
-} from "./styled/Wrappers";
-import { IMovieCategory } from "../models/IMovieCategory";
-import { useState, useContext } from "react";
-import { IMovie } from "../models/IMovie";
-import { MoviesContext } from "../context/MoviesContext";
+} from './styled/Wrappers';
+import { useState, useContext } from 'react';
+import { IMovie } from '../models/IMovie';
+import { MoviesContext } from '../context/MoviesContext';
+import { IProductCategory } from '../models/IProductCategory';
 
 export const Home = () => {
   const { movies, categories } = useContext(MoviesContext);
   const [displayedMovies, setDisplayedMovies] = useState<IMovie[]>(movies);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -36,10 +36,10 @@ export const Home = () => {
     else setDisplayedMovies(movies);
   };
 
-  const getFilteredMovies = (selectedCategory: IMovieCategory) => {
+  const getFilteredMovies = (selectedCategory: IProductCategory) => {
     const filteredMovies = movies.filter((movie) => {
       return movie.productCategory.some(
-        (category) => category.categoryId === selectedCategory.id
+        (category) => category.categoryId === selectedCategory.categoryId
       );
     });
 

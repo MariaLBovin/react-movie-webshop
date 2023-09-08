@@ -5,8 +5,7 @@ import { StyledLi } from './styled/StyledLi';
 import { StyledImage } from './styled/StyledImage';
 import { useContext } from 'react';
 import { OrderContext } from '../context/OrderContext';
-import { ActionType } from '../reducers/OrderReducer';
-import { OrderRow } from '../models/OrderRow';
+import { ActionType } from '../models/ActionType';
 
 const fallbackImg = './src/assets/fallbackImg.png';
 
@@ -14,7 +13,7 @@ interface IMovieProps {
   movie: IMovie;
 }
 export const MovieList = ({ movie }: IMovieProps) => {
-  const { dispatch, order } = useContext(OrderContext);
+  const { dispatch } = useContext(OrderContext);
   return (
     <StyledLi>
       <StyledImage
@@ -37,17 +36,6 @@ export const MovieList = ({ movie }: IMovieProps) => {
         }
       >
         Köp
-      </StyledButtonPrimary>
-      <StyledButtonPrimary
-        disabled={order.orderRows.length === 0}
-        onClick={() =>
-          dispatch({
-            type: ActionType.REMOVED_ORDER_ROW,
-            payload: JSON.stringify(movie),
-          })
-        }
-      >
-        Ta bort
       </StyledButtonPrimary>
     </StyledLi>
   );

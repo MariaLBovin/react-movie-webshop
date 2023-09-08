@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledButtonPrimary = styled.button`
   padding: 0.75rem 2rem;
@@ -8,6 +8,7 @@ export const StyledButtonPrimary = styled.button`
   color: white;
   margin: 5px;
   width: 100px;
+  cursor: pointer;
 
   &:hover {
     background-color: #ffffff;

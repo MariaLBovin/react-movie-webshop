@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { Order } from '../models/Order';
 
 export const get = async <T>(url: string) => {
   try {
@@ -11,7 +10,7 @@ export const get = async <T>(url: string) => {
   }
 };
 
-export const post = async <T>(url: Order) => {
+export const post = async <T>(url: string) => {
   try {
     const response = await axios.post<T>(`${url}`);
     return response.data;
