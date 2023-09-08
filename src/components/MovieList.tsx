@@ -6,15 +6,16 @@ import { StyledImage } from "./styled/StyledImage";
 import { useContext } from "react";
 import { OrderContext } from "../context/OrderContext";
 import { ActionType } from "../reducers/OrderReducer";
+import { StyledButtonWrapper } from "./styled/Wrappers";
+import { StyledMovieCardBottomSection } from "./styled/StyledMovieCardBottomSection";
 
 const fallbackImg = "./src/assets/fallbackImg.png";
-
-const bottomSectionStyle: React.CSSProperties = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  padding: "1rem",
-};
+// const bottomSectionStyle: React.CSSProperties = {
+//   display: "flex",
+//   flexDirection: "column",
+//   alignItems: "center",
+//   padding: "1rem",
+// };
 
 interface IMovieProps {
   movie: IMovie;
@@ -32,12 +33,12 @@ export const MovieList = ({ movie }: IMovieProps) => {
           }}
         ></StyledImage>
       </div>
-      <div style={bottomSectionStyle}>
+      <StyledMovieCardBottomSection>
         <h3>{movie.name}</h3>
         <StyledButtonSecondary as="a" href={"./movie/" + movie.id}>
           Läs mer
         </StyledButtonSecondary>
-        <div style={{ display: "flex", height: "60px" }}>
+        <StyledButtonWrapper>
           <StyledButtonPrimary
             onClick={() =>
               dispatch({ type: ActionType.ADDED_ORDER_ROW, payload: movie })
@@ -52,8 +53,8 @@ export const MovieList = ({ movie }: IMovieProps) => {
           >
             Ta bort
           </StyledButtonSecondary>
-        </div>
-      </div>
+        </StyledButtonWrapper>
+      </StyledMovieCardBottomSection>
     </StyledLi>
   );
 };

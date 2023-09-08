@@ -7,6 +7,7 @@ export const StyledLi = styled.li`
   justify-content: space-between;
   margin: 10px;
   width: 250px;
+  max-height: 600px;
   border: 1px solid black;
   padding: 1rem;
   background-color: #ffffff;

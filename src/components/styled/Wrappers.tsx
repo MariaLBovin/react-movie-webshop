@@ -39,3 +39,8 @@ export const StyledCheckoutWrapper = styled(StyledMain)`
   flex-direction: column;
   align-items: center;
 `;
+
+export const StyledButtonWrapper = styled.div`
+  display: flex;
+  height: 60px;
+`;
