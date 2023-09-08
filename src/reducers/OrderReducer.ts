@@ -1,6 +1,6 @@
-import { IMovie } from '../models/IMovie';
-import { Order } from '../models/Order';
-import { OrderRow } from '../models/OrderRow';
+import { IMovie } from "../models/IMovie";
+import { Order } from "../models/Order";
+import { OrderRow } from "../models/OrderRow";
 
 export interface IOrderAction {
   type: ActionType;
@@ -59,15 +59,16 @@ export const OrderReducer = (order: Order, action: IOrderAction) => {
     }
     case ActionType.ADDED_CUSTOMER: {
       const data = JSON.parse(action.payload) as {
-        createdBy: string,
-        paymentMethod: string,
-      }
-      return {
-          ... order, 
-          createdBy: data.createdBy,
-          paymentMethod: data.paymentMethod
+        createdBy: string;
+        paymentMethod: string;
+      };
+      console.log("data: ", data);
 
-      }
+      return {
+        ...order,
+        createdBy: data.createdBy,
+        paymentMethod: data.paymentMethod,
+      };
     }
     default:
       return order;
