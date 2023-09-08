@@ -1,29 +1,29 @@
-import { createBrowserRouter } from 'react-router-dom';
-import { Layout } from './components/Layout';
-import { Movie } from './components/Movie';
-import { Checkout } from './components/Checkout';
-import { Confirmation } from './components/Confirmation';
-import { Home } from './components/Home';
+import { createBrowserRouter } from "react-router-dom";
+import { Layout } from "./components/Layout";
+import { Movie } from "./components/Movie";
+import { Checkout } from "./components/Checkout";
+import { Confirmation } from "./components/Confirmation";
+import { Home } from "./components/Home";
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Layout />,
     children: [
       {
-        path: '/',
+        path: "/",
         element: <Home />,
       },
       {
-        path: '/movie/:id',
+        path: "/movie/:id",
         element: <Movie />,
       },
       {
-        path: '/Checkout',
+        path: "/checkout",
         element: <Checkout />,
       },
       {
-        path: '/confirmation',
+        path: "/confirmation",
         element: <Confirmation />,
       },
     ],
