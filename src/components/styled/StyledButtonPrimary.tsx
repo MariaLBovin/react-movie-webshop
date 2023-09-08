@@ -11,7 +11,7 @@ export const StyledButtonPrimary = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: #ffffff;
+    background-color: #96d0ff;
     color: black;
   }
 `;
