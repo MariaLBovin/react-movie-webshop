@@ -31,14 +31,7 @@ export const OrderReducer = (order: Order, action: IOrderAction) => {
           totalPrice: order.totalPrice + data.price,
           orderRows: [
             ...order.orderRows,
-            new OrderRow(
-              Math.random(),
-              data.id,
-              data.name,
-              data.price,
-              1,
-              Math.random()
-            ),
+            new OrderRow(data.id, data.name, data.price, 1, Math.random()),
           ],
         };
       }
@@ -50,7 +43,9 @@ export const OrderReducer = (order: Order, action: IOrderAction) => {
       return {
         ...order,
         totalPrice: order.totalPrice - data.price * data.amount,
-        orderRows: [...order.orderRows.filter((row) => row.id !== data.id)],
+        orderRows: [
+          ...order.orderRows.filter((row) => row.productId !== data.productId),
+        ],
       };
     }
 

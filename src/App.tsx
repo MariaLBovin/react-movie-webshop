@@ -16,7 +16,7 @@ import { useGetOrder } from './hooks/useGetOrder';
 function App() {
   const [storedOrder, setStoredOrder] = useLocalStorage<Order>(
     'order',
-    new Order(0, 0, new Date(), '', '', 0, 0, [])
+    new Order('', '', 0, [])
   );
   const [movies, setMovies] = useLocalStorage<IMovie[]>('movies', []);
   const [categories, setCategories] = useLocalStorage<IProductCategory[]>(

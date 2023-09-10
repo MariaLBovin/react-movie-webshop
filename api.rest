@@ -1,0 +1,34 @@
+POST https://medieinstitutet-wie-products.azurewebsites.net/api/orders
+Content-Type: application/json
+
+
+    {
+
+        "paymentMethod": "Paypal",
+
+        "createdBy": "Batmans kompis",
+
+             "orderRows":   [
+    {
+        "productId": 76,
+        "price": 199,
+        "amount": 1,
+    },
+    {
+        "productId": 77,
+        "price": 129,
+        "amount": 1,
+    },
+    {
+        "productId": 78,
+        "price": 100,
+        "amount": 1,
+    }
+]
+    }
+
+
+###
+
+GET https://medieinstitutet-wie-products.azurewebsites.net/api/orders
+Content-Type: application/json
