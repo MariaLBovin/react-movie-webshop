@@ -8,7 +8,7 @@ import { IMovie } from './models/IMovie';
 import { IProductCategory } from './models/IProductCategory';
 import { Order } from './models/Order';
 import { getMoviesData, getCategoriesData } from './services/DataService';
-import { useReducer } from 'react';
+import { useReducer, useState } from 'react';
 import { OrderReducer } from './reducers/OrderReducer';
 import { OrderContext } from './context/OrderContext';
 import { useGetOrder } from './hooks/useGetOrder';
@@ -18,11 +18,8 @@ function App() {
     'order',
     new Order('', '', 0, [])
   );
-  const [movies, setMovies] = useLocalStorage<IMovie[]>('movies', []);
-  const [categories, setCategories] = useLocalStorage<IProductCategory[]>(
-    'categories',
-    []
-  );
+  const [movies, setMovies] = useState<IMovie[]>([]);
+  const [categories, setCategories] = useState<IProductCategory[]>([]);
 
   const [order, dispatch] = useReducer(OrderReducer, storedOrder);
 

@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { IMovie } from '../models/IMovie';
 
-export const useMovieData = (movies: IMovie[], getMoviesData: () => void) => {
+export const useMovieData = (movies: IMovie[], getData: () => void) => {
   useEffect(() => {
     if (movies.length === 0) {
-      getMoviesData();
+      getData();
     }
-  });
+  }, [movies, getData]);
 };

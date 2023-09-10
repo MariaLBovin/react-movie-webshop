@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledSpan = styled.span`
+export const StyledCartButton = styled.button`
   font-size: 50px;
   text-align: center;
   margin: 0;
@@ -11,4 +11,6 @@ export const StyledSpan = styled.span`
   background: white;
   z-index: 999;
   max-width: 25%;
+  border: none;
+  cursor: pointer;
 `;

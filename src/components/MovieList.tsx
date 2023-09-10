@@ -14,6 +14,7 @@ interface IMovieProps {
 }
 export const MovieList = ({ movie }: IMovieProps) => {
   const { dispatch } = useContext(OrderContext);
+
   return (
     <StyledLi>
       <StyledImage
