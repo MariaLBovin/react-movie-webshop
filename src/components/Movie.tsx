@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { IMovie } from '../models/IMovie';
 import { StyledMovieWrapper } from './styled/Wrappers';
 import { StyledButtonPrimary } from './styled/StyledButtonPrimary';
