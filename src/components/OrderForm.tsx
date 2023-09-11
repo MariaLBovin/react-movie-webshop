@@ -63,7 +63,13 @@ export const OrderForm = () => {
           ></StyledInput>
           Paypal
         </StyledLable>
-        <StyledButtonPrimary>Köp</StyledButtonPrimary>
+        <StyledButtonPrimary
+          as="a"
+          href="/Confirmation"
+          disabled={formState.inputValue === ''}
+        >
+          Köp
+        </StyledButtonPrimary>
         {/* <StyledLable>
           <StyledInput
             type="radio"

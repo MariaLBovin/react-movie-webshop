@@ -5,7 +5,8 @@ body {
 }
 
 .movie-checkout {
-  padding: 2rem;
+  border: 1px solid black;
+  padding: 0.5rem;
   width: 400px;
   display: flex;
   flex-direction: column;
