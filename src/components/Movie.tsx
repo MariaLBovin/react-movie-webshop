@@ -8,6 +8,7 @@ import { MoviesContext } from '../context/MoviesContext';
 import { OrderContext } from '../context/OrderContext';
 import { ActionType } from '../models/ActionType';
 import { StyledMovieImage } from './styled/StyledMovieImage';
+import { StyledMovie } from './styled/StyledMovie';
 // import { OrderContext } from '../context/OrderContext';
 
 export const Movie = () => {
@@ -15,31 +16,31 @@ export const Movie = () => {
   const { movies } = useContext(MoviesContext);
   const { dispatch } = useContext(OrderContext);
 
-  const foundMovie = movies.find(
-    (movie: IMovie) => JSON.stringify(movie.id) === id
-  ) as IMovie;
-
-  //Replace image wrapping div with StyledImageWrapper
+  const foundMovie = movies.find((movie: IMovie) => JSON.stringify(movie.id) === id) as IMovie || {};
 
   return (
     <StyledMovieWrapper>
       <StyledMovieImage src={foundMovie.imageUrl} alt={foundMovie.name} />
-      <h2>{foundMovie.name}</h2>
-      <p>{foundMovie.description}</p>
-      <p>{foundMovie.price}kr</p>
-      <StyledButtonPrimary
-        onClick={() =>
-          dispatch({
-            type: ActionType.ADDED_ORDER_ROW,
-            payload: JSON.stringify(foundMovie),
-          })
-        }
-      >
-        Buy
-      </StyledButtonPrimary>
-      <StyledButtonSecondary as='a' href='/'>
-        Take me back
-      </StyledButtonSecondary>
+      <StyledMovie>
+        <h2>{foundMovie.name}</h2>
+        <p>{foundMovie.description}</p>
+        <div>
+          <span>{foundMovie.price}kr</span>
+          <StyledButtonPrimary
+            onClick={() =>
+              dispatch({
+                type: ActionType.ADDED_ORDER_ROW,
+                payload: JSON.stringify(foundMovie),
+              })
+            }
+          >
+            Buy
+          </StyledButtonPrimary>
+          <StyledButtonSecondary as='a' href='/'>
+            Take me back
+          </StyledButtonSecondary>
+        </div>
+      </StyledMovie>
     </StyledMovieWrapper>
   );
 };

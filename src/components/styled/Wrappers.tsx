@@ -30,16 +30,18 @@ export const StyledMoviesWrapper = styled.div`
   min-height: 100vh;
   margin-left: 20vw;
 `;
+
 export const StyledMovieWrapper = styled.div`
   display: flex;
   background-color: #ccc5ba;
-  flex-direction: column;
+  flex-direction: row;
   margin: 7rem auto;
-  max-width: 30vw;
+  width: 70vw;
   text-align: center;
   align-items: center;
   border: 1px;
   border-style: solid;
+  border-radius: 16px;
 `;
 
 export const StyledCheckoutWrapper = styled(StyledMain)`
