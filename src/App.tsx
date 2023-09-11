@@ -20,14 +20,11 @@ function App() {
   );
   const [movies, setMovies] = useState<IMovie[]>([]);
   const [categories, setCategories] = useState<IProductCategory[]>([]);
-
   const [order, dispatch] = useReducer(OrderReducer, storedOrder);
 
   const getData = async () => {
-    const movieList = await getMoviesData();
-    const categoriesList = await getCategoriesData();
-    setMovies(movieList);
-    setCategories(categoriesList);
+    setMovies(await getMoviesData());
+    setCategories(await getCategoriesData());
   };
 
   useMovieData(movies, getData);
