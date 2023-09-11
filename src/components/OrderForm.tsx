@@ -1,47 +1,80 @@
-import { css } from 'styled-components';
 import { StyledInput } from './styled/StyledInput';
-import { StyledCheckoutWrapper } from './styled/Wrappers';
 import { StyledLable } from './styled/StyledLabel';
 import { StyledH2 } from './styled/StyledH2';
+import { ChangeEvent, useContext, useState } from 'react';
 import { StyledButtonPrimary } from './styled/StyledButtonPrimary';
-import { StyledButtonSecondary } from './styled/StyledButtonSecondary';
+import { ActionType } from '../models/ActionType';
+import { OrderContext } from '../context/OrderContext';
+import { postOrderData } from '../services/DataService';
 
-const customStyle = css`
-  width: 30%;
-  &::placeholder {
-    color: #ffffff;
-  }
-`;
+export class FormData {
+  constructor(public createdBy: string, public paymentMethod: string) {}
+}
 
 export const OrderForm = () => {
-  const handleBuy = () => {
-    console.log('köp');
-    // localStorage.removeItem('order')
+  const { dispatch, order } = useContext(OrderContext);
+  const [formState, setFormState] = useState({
+    inputValue: '',
+    paymentValue: '',
+  });
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(formState.inputValue, formState.paymentValue);
+    console.log('formData: ', formData);
+
+    dispatch({
+      type: ActionType.ADDED_CUSTOMER,
+      payload: JSON.stringify(formData),
+    });
+
+    console.log(order);
+
+    postOrderData(order);
+    localStorage.removeItem('order');
+  };
+
+  const handleInputValue = (e: ChangeEvent<HTMLInputElement>) => {
+    setFormState({ ...formState, inputValue: e.target.value });
+  };
+
+  const handlePaymentValue = (e: ChangeEvent<HTMLInputElement>) => {
+    setFormState({ ...formState, paymentValue: e.target.value });
   };
 
   return (
     <>
-      <StyledCheckoutWrapper>
+      <form onSubmit={handleSubmit}>
         <StyledH2>Beställningsformulär</StyledH2>
-        <StyledInput placeholder='Namn' customStyle={customStyle}></StyledInput>
         <StyledInput
-          placeholder='Företags-id'
-          customStyle={customStyle}
+          type="text"
+          placeholder="Namn"
+          value={formState.inputValue}
+          onChange={handleInputValue}
         ></StyledInput>
         <StyledH2>Betalningsalternativ</StyledH2>
         <StyledLable>
-          <StyledInput type='radio' name='Paypal' value='Paypal'></StyledInput>
+          <StyledInput
+            type="radio"
+            name="Paypal"
+            value="Paypal"
+            checked={formState.paymentValue === 'Paypal'}
+            onChange={handlePaymentValue}
+          ></StyledInput>
           Paypal
         </StyledLable>
-        <StyledLable>
-          <StyledInput type='radio' name='Paypal' value='Paypal'></StyledInput>
+        <StyledButtonPrimary>Köp</StyledButtonPrimary>
+        {/* <StyledLable>
+          <StyledInput
+            type="radio"
+            name="Paypal"
+            value="Paypal"
+            checked={paymentValue === null}
+            onChange={}
+          ></StyledInput>
           Annat
-        </StyledLable>
-        <StyledButtonPrimary as='a' href={'./confirmation'} onClick={handleBuy}>
-          Köp
-        </StyledButtonPrimary>
-        <StyledButtonSecondary>Rensa</StyledButtonSecondary>
-      </StyledCheckoutWrapper>
+        </StyledLable> */}
+      </form>
     </>
   );
 };

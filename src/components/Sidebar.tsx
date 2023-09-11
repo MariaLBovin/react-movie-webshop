@@ -1,6 +1,8 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useContext } from 'react';
+import { StyledButtonSecondary } from './styled/StyledButtonSecondary';
+import { StyledSelect } from './styled/StyledSelect';
+import { MoviesContext } from '../context/MoviesContext';
 import { IProductCategory } from "../models/IProductCategory";
-import { StyledSelect } from "./styled/StyledSelect";
 import { StyledForm } from "./styled/StyledForm";
 import { StyledH2 } from "./styled/StyledH2";
 import { StyledSearchInput } from "./styled/StyledSearchInput";
@@ -18,9 +20,7 @@ export const Sidebar = ({
   searchSubmit,
   getSelectedCategory,
 }: ISidebarProps) => {
-  const categories = JSON.parse(
-    localStorage.getItem("categories") || "[]"
-  ) as IProductCategory[];
+  const { categories } = useContext(MoviesContext);
 
   return (
     <>
