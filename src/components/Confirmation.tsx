@@ -11,7 +11,7 @@ export const Confirmation = () => {
     <>
       <StyledCheckoutWrapper>
         <StyledH2>Tack för ditt köp {order.createdBy}!</StyledH2>
-        <h3>Här order din order</h3>
+        <h3>Här är din order</h3>
         {order.orderRows.map((object, index) => (
           <div key={index} className="movie-checkout">
             <h4>Vara: {object.product}</h4>

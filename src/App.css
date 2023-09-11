@@ -6,7 +6,6 @@ body {
 
 .movie-checkout {
   padding: 2rem;
-  background-color: red;
   width: 400px;
   display: flex;
   flex-direction: column;

@@ -11,6 +11,7 @@ export const StyledButtonPrimary = styled.button`
   color: white;
   margin: 5px;
   width: 100px;
+  height: 50px;
   cursor: pointer;
 
   &:hover {

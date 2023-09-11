@@ -1,15 +1,15 @@
-import { IMovie } from "../models/IMovie";
-import { StyledButtonPrimary } from "./styled/StyledButtonPrimary";
-import { StyledButtonSecondary } from "./styled/StyledButtonSecondary";
-import { StyledLi } from "./styled/StyledLi";
-import { StyledImage } from "./styled/StyledImage";
-import { useContext } from "react";
-import { OrderContext } from "../context/OrderContext";
-import { StyledButtonWrapper } from "./styled/Wrappers";
-import { StyledMovieCardBottomSection } from "./styled/StyledMovieCardBottomSection";
-import { ActionType } from "../models/ActionType";
+import { IMovie } from '../models/IMovie';
+import { StyledButtonPrimary } from './styled/StyledButtonPrimary';
+import { StyledButtonSecondary } from './styled/StyledButtonSecondary';
+import { StyledLi } from './styled/StyledLi';
+import { StyledImage } from './styled/StyledImage';
+import { useContext } from 'react';
+import { OrderContext } from '../context/OrderContext';
+import { StyledButtonWrapper } from './styled/Wrappers';
+import { StyledMovieCardBottomSection } from './styled/StyledMovieCardBottomSection';
+import { ActionType } from '../models/ActionType';
 
-const fallbackImg = "./src/assets/fallbackImg.png";
+const fallbackImg = './src/assets/fallbackImg.png';
 
 interface IMovieProps {
   movie: IMovie;
@@ -30,7 +30,7 @@ export const MovieList = ({ movie }: IMovieProps) => {
       </div>
       <StyledMovieCardBottomSection>
         <h3>{movie.name}</h3>
-        <StyledButtonSecondary as="a" href={"./movie/" + movie.id}>
+        <StyledButtonSecondary as="a" href={'./movie/' + movie.id}>
           Läs mer
         </StyledButtonSecondary>
         <StyledButtonWrapper>
@@ -44,16 +44,6 @@ export const MovieList = ({ movie }: IMovieProps) => {
           >
             Köp
           </StyledButtonPrimary>
-          <StyledButtonSecondary
-            onClick={() =>
-              dispatch({
-                type: ActionType.REMOVED_ORDER_ROW,
-                payload: JSON.stringify(movie),
-              })
-            }
-          >
-            Ta bort
-          </StyledButtonSecondary>
         </StyledButtonWrapper>
       </StyledMovieCardBottomSection>
     </StyledLi>

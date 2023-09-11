@@ -60,7 +60,7 @@ export const Cart = () => {
       </ul>
       {order.orderRows.length !== 0 && (
         <StyledButtonPrimary as="a" href="/Confirmation">
-          TILL KASSAN
+          Till kassan
         </StyledButtonPrimary>
       )}
     </StyledCart>
