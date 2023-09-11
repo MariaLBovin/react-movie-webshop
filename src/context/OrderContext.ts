@@ -1,6 +1,6 @@
-import { Dispatch, createContext } from 'react';
-import { Order } from '../models/Order';
-import { IOrderAction } from '../reducers/OrderReducer';
+import { Dispatch, createContext } from "react";
+import { Order } from "../models/Order";
+import { IOrderAction } from "../reducers/OrderReducer";
 
 export interface IOrderContext {
   order: Order;
