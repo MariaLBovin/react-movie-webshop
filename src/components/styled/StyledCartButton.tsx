@@ -6,10 +6,10 @@ export const StyledCartButton = styled.button`
   margin: 0;
   padding: 0;
   position: fixed;
-  right: 0;
-  top: 0;
+  right: 1rem;
+  top: 1rem;
   background: white;
-  z-index: 999;
+  z-index: 5;
   max-width: 25%;
   border: none;
   cursor: pointer;
