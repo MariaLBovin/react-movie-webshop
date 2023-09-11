@@ -26,8 +26,8 @@ export const Cart = () => {
     <StyledCart>
       <p>Din kundvagn:</p>
       <ul>
-        {order.orderRows.map((row) => (
-          <div key={row.id}>
+        {order.orderRows.map((row, index) => (
+          <div key={index}>
             {row.product}
             <p>
               antal: {row.amount}, pris: {row.price} kr
@@ -58,9 +58,9 @@ export const Cart = () => {
         ))}
         <p>Totalsumma: {order.totalPrice} kr</p>
       </ul>
-      <StyledButtonPrimary disabled={order.orderRows.length === 0}>
-        TILL KASSAN
-      </StyledButtonPrimary>
+      {order.orderRows.length !== 0 && (
+        <StyledButtonPrimary>TILL KASSAN</StyledButtonPrimary>
+      )}
     </StyledCart>
   );
 };
