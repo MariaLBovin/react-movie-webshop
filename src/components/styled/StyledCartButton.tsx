@@ -9,7 +9,7 @@ export const StyledCartButton = styled.button`
   right: 0;
   top: 0;
   background: white;
-  z-index: 999;
+  z-index: 5;
   max-width: 25%;
   border: none;
   cursor: pointer;
