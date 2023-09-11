@@ -16,7 +16,10 @@ export const OrderForm = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    
     console.log(order);
+    postOrderData(order);
+    localStorage.removeItem('order')
 
   };
 
@@ -33,6 +36,10 @@ export const OrderForm = () => {
               type: ActionType.UPDATE_ORDERNAME,
               payload:JSON.stringify({ ...order, createdBy: e.target.value }),
             });
+            dispatch({
+              type: ActionType.UPDATE_PRODUCT,
+              payload: JSON.stringify({...order})
+            })
           }}
         ></StyledInput>
         <StyledH2>Betalningsalternativ</StyledH2>
