@@ -49,6 +49,14 @@ export const OrderReducer = (order: Order, action: IOrderAction) => {
       };
     }
 
+    case ActionType.CLEARED_ORDER: {
+      return {
+        ...order,
+        totalPrice: 0,
+        orderRows: [],
+      };
+    }
+
     case ActionType.INCREASED_AMOUNT: {
       const data = JSON.parse(action.payload) as OrderRow;
 
@@ -114,4 +122,3 @@ export const OrderReducer = (order: Order, action: IOrderAction) => {
       return order;
   }
 };
-
