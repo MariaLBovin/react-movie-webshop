@@ -39,7 +39,7 @@ export const Home = () => {
   const getFilteredMovies = (selectedCategory: IProductCategory) => {
     const filteredMovies = movies.filter((movie) => {
       return movie.productCategory.some(
-        (category) => category.categoryId === selectedCategory.categoryId
+        (category) => category.id === selectedCategory.id
       );
     });
 

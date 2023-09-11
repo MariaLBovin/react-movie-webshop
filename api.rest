@@ -10,18 +10,9 @@ Content-Type: application/json
 
              "orderRows":   [
     {
+        "product": "null",
         "productId": 76,
         "price": 199,
-        "amount": 1,
-    },
-    {
-        "productId": 77,
-        "price": 129,
-        "amount": 1,
-    },
-    {
-        "productId": 78,
-        "price": 100,
         "amount": 1,
     }
 ]
