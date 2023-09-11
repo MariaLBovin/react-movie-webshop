@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
 export const StyledButtonPrimary = styled.button`
-  padding: 0.75rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border-radius: 5px;
   border: 1px solid black;
   background-color: #55acf3;

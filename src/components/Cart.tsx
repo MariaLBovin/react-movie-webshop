@@ -59,7 +59,9 @@ export const Cart = () => {
         <p>Totalsumma: {order.totalPrice} kr</p>
       </ul>
       {order.orderRows.length !== 0 && (
-        <StyledButtonPrimary>TILL KASSAN</StyledButtonPrimary>
+        <StyledButtonPrimary as="a" href="/Confirmation">
+          TILL KASSAN
+        </StyledButtonPrimary>
       )}
     </StyledCart>
   );
