@@ -1,10 +1,10 @@
-import { createContext } from "react";
-import { IMovie } from "../models/IMovie";
-import { IMovieCategory } from "../models/IMovieCategory";
+import { createContext } from 'react';
+import { IMovie } from '../models/IMovie';
+import { IProductCategory } from '../models/IProductCategory';
 
 export interface IMovieContext {
   movies: IMovie[];
-  categories: IMovieCategory[];
+  categories: IProductCategory[];
 }
 
 export const MoviesContext = createContext<IMovieContext>({

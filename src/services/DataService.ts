@@ -18,6 +18,7 @@ export const getCategoriesData = async (): Promise<IProductCategory[]> => {
   return await get<IProductCategory[]>(`${BASE_URL}categories/`);
 };
 
+<<<<<<< HEAD
 export const postOrder = async (order: Order) => {
   console.log(order);
 
@@ -30,4 +31,8 @@ export const postOrder = async (order: Order) => {
     console.error("lyckades inte skicka data", error);
     throw error;
   }
+=======
+export const postOrderData = async (order: Order): Promise<Order> => {
+  return await post<Order>(`${BASE_URL}/orders/${order}`);
+>>>>>>> 07168ad7698978908276e7aed1c3c2f2d4f8c073
 };
