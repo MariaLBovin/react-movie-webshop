@@ -1,9 +1,10 @@
-import { IMovie } from '../models/IMovie';
-import { IProductCategory } from '../models/IProductCategory';
-import { Order } from '../models/Order';
-import { get, post } from './DataServiceBase';
 
-const BASE_URL = 'https://medieinstitutet-wie-products.azurewebsites.net/api/';
+import { IMovie } from "../models/IMovie";
+import { IProductCategory } from "../models/IProductCategory";
+import { Order } from "../models/Order";
+import { get, post } from "./DataServiceBase";
+
+const BASE_URL = "https://medieinstitutet-wie-products.azurewebsites.net/api/";
 
 export const getMoviesData = async (): Promise<IMovie[]> => {
   return await get<IMovie[]>(`${BASE_URL}products`);
@@ -18,5 +19,5 @@ export const getCategoriesData = async (): Promise<IProductCategory[]> => {
 };
 
 export const postOrderData = async (order: Order): Promise<Order> => {
-  return await post<Order>(`${BASE_URL}/orders/${order}`);
+  return await post<Order>(`${BASE_URL}orders/`, order);
 };

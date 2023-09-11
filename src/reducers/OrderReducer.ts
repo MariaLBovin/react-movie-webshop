@@ -31,7 +31,7 @@ export const OrderReducer = (order: Order, action: IOrderAction) => {
           totalPrice: order.totalPrice + data.price,
           orderRows: [
             ...order.orderRows,
-            new OrderRow(data.id, data.name, data.price, 1, Math.random()),
+            new OrderRow(data.id, data.name, data.price, 1),
           ],
         };
       }
@@ -82,17 +82,34 @@ export const OrderReducer = (order: Order, action: IOrderAction) => {
         orderRows: updatedRow,
       };
     }
-
-    case ActionType.ADDED_CUSTOMER: {
-      const data = JSON.parse(action.payload) as Order;
-
+    case ActionType.UPDATE_PRODUCT: {
+      const updatedRows = order.orderRows.map ((row) => {
+        return {...row, product:null}
+      })
+        return {
+          ...order,
+          orderRows: updatedRows
+        }
+    }
+    case ActionType.UPDATE_ORDERNAME: {
+      const updatedOrder = JSON.parse(action.payload) as Order;
+      
       return {
         ...order,
-        createdBy: data.createdBy,
-        paymentMethod: data.paymentMethod,
+        createdBy: updatedOrder.createdBy,
+        paymentMethod: updatedOrder.paymentMethod,
       };
     }
 
+    case ActionType.UPDATE_ORDERPAYMENT: {
+      const updatedOrder = JSON.parse(action.payload) as Order;
+
+      return {
+        ...order,
+        paymentMethod: updatedOrder.paymentMethod,
+
+      };
+    }
     default:
       return order;
   }

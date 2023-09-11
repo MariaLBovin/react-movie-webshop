@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { StyledCart } from './styled/StyledCart';
 import { OrderRow } from '../models/OrderRow';
 import { ActionType } from '../models/ActionType';
+import { Link } from 'react-router-dom';
 
 export const Cart = () => {
   const { order, dispatch } = useContext(OrderContext);
@@ -59,7 +60,9 @@ export const Cart = () => {
         <p>Totalsumma: {order.totalPrice} kr</p>
       </ul>
       {order.orderRows.length !== 0 && (
-        <StyledButtonPrimary>TILL KASSAN</StyledButtonPrimary>
+        <StyledButtonPrimary>
+          <Link to={"/checkout"}>TILL KASSAN</Link>
+          </StyledButtonPrimary>
       )}
     </StyledCart>
   );

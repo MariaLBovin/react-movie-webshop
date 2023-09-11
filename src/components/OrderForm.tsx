@@ -13,33 +13,14 @@ export class FormData {
 
 export const OrderForm = () => {
   const { dispatch, order } = useContext(OrderContext);
-  const [formState, setFormState] = useState({
-    inputValue: '',
-    paymentValue: '',
-  });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(formState.inputValue, formState.paymentValue);
-    console.log('formData: ', formData);
-
-    dispatch({
-      type: ActionType.ADDED_CUSTOMER,
-      payload: JSON.stringify(formData),
-    });
-
+    e.preventDefault()
+    
     console.log(order);
-
     postOrderData(order);
-    localStorage.removeItem('order');
-  };
+    localStorage.removeItem('order')
 
-  const handleInputValue = (e: ChangeEvent<HTMLInputElement>) => {
-    setFormState({ ...formState, inputValue: e.target.value });
-  };
-
-  const handlePaymentValue = (e: ChangeEvent<HTMLInputElement>) => {
-    setFormState({ ...formState, paymentValue: e.target.value });
   };
 
   return (
@@ -49,8 +30,17 @@ export const OrderForm = () => {
         <StyledInput
           type="text"
           placeholder="Namn"
-          value={formState.inputValue}
-          onChange={handleInputValue}
+          value={order.createdBy}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            dispatch({
+              type: ActionType.UPDATE_ORDERNAME,
+              payload:JSON.stringify({ ...order, createdBy: e.target.value }),
+            });
+            dispatch({
+              type: ActionType.UPDATE_PRODUCT,
+              payload: JSON.stringify({...order})
+            })
+          }}
         ></StyledInput>
         <StyledH2>Betalningsalternativ</StyledH2>
         <StyledLable>
@@ -58,23 +48,32 @@ export const OrderForm = () => {
             type="radio"
             name="Paypal"
             value="Paypal"
-            checked={formState.paymentValue === 'Paypal'}
-            onChange={handlePaymentValue}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              dispatch({
+                type: ActionType.UPDATE_ORDERPAYMENT,
+                payload: JSON.stringify({ ...order, paymentMethod: e.target.value }),
+              });
+            }}
           ></StyledInput>
           Paypal
         </StyledLable>
-        <StyledButtonPrimary>Köp</StyledButtonPrimary>
-        {/* <StyledLable>
+        <StyledLable>
           <StyledInput
             type="radio"
-            name="Paypal"
-            value="Paypal"
-            checked={paymentValue === null}
-            onChange={}
+            name="null"
+            value="null"
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              dispatch({
+                type: ActionType.UPDATE_ORDERPAYMENT,
+                payload: JSON.stringify({ ...order, paymentMethod: e.target.value }),
+              });
+            }}
           ></StyledInput>
           Annat
-        </StyledLable> */}
+        </StyledLable>
+        <StyledButtonPrimary>Köp</StyledButtonPrimary>
       </form>
+      
     </>
   );
 };

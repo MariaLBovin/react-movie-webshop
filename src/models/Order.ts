@@ -1,4 +1,4 @@
-import { OrderRow } from './OrderRow';
+import { OrderRow } from "./OrderRow";
 
 export class Order {
   constructor(
