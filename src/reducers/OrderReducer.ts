@@ -82,20 +82,32 @@ export const OrderReducer = (order: Order, action: IOrderAction) => {
         orderRows: updatedRow,
       };
     }
-
-    case ActionType.ADDED_CUSTOMER: {
-      const data = JSON.parse(action.payload) as Order;
+    case ActionType.UPDATE_ORDER: {
+      const updatedOrder = JSON.parse(action.payload) as Order;
       const updatedRow = order.orderRows.map((row) => {
-        return {...row, product: null}
-      })
-
+            return {...row, product: null}
+          })
+    
       return {
         ...order,
-        createdBy: data.createdBy,
-        paymentMethod: data.paymentMethod,
-        orderRows: updatedRow,
+        createdBy: updatedOrder.createdBy,
+        paymentMethod: updatedOrder.paymentMethod,
+        orderRows: updatedRow
       };
     }
+    // case ActionType.ADDED_CUSTOMER: {
+    //   const data = JSON.parse(action.payload) as Order;
+    //   const updatedRow = order.orderRows.map((row) => {
+    //     return {...row, product: null}
+    //   })
+
+    //   return {
+    //     ...order,
+    //     createdBy: data.createdBy,
+    //     paymentMethod: data.paymentMethod,
+    //     orderRows: updatedRow,
+    //   };
+    // }
    
     default:
       return order;

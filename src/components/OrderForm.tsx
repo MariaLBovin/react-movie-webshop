@@ -13,52 +13,62 @@ export class FormData {
 
 export const OrderForm = () => {
   const { dispatch, order } = useContext(OrderContext);
-  const [formState, setFormState] = useState({
-    inputValue: '',
-    paymentValue: '',
-  });
+  
+  // const [formState, setFormState] = useState({
+  //   inputValue: '',
+  //   paymentValue: '',
+  // });
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(formState.inputValue, formState.paymentValue);
-    console.log('formData: ', formData);
+  // console.log(order);
+  
+  // if(!order.createdBy){
+  //   dispatch({
+  //     type:ActionType.UPDATE_ORDER,
+  //     payload: JSON.stringify({...order, createdBy:''})
+  //   })
+  // }
+  
 
+  const handleInputValue = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch({
-      type: ActionType.ADDED_CUSTOMER,
-      payload: JSON.stringify(formData),
-      
+      type: ActionType.UPDATE_ORDER,
+      payload:JSON.stringify({ ...order, inputValue: e.target.value }),
+    });
+    order.createdBy='';
+  };
+
+  const handlePaymentValue = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch({
+      type: ActionType.UPDATE_ORDER,
+      payload: JSON.stringify({ ...order, paymentValue: e.target.value }),
     });
 
   };
 
-  const handleInputValue = (e: ChangeEvent<HTMLInputElement>) => {
-    setFormState({ ...formState, inputValue: e.target.value });
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    console.log(order);
+
   };
 
-  const handlePaymentValue = (e: ChangeEvent<HTMLInputElement>) => {
-    setFormState({ ...formState, paymentValue: e.target.value });
-  };
-  const handlePost = () => {
-    console.log(order);
-    
-  }
   return (
     <>
       <form onSubmit={handleSubmit}>
         <StyledH2>Beställningsformulär</StyledH2>
-        <StyledInput
+        <input
           type="text"
           placeholder="Namn"
-          value={formState.inputValue}
+          value={order.createdBy}
           onChange={handleInputValue}
-        ></StyledInput>
+        ></input>
         <StyledH2>Betalningsalternativ</StyledH2>
         <StyledLable>
           <StyledInput
             type="radio"
             name="Paypal"
             value="Paypal"
-            checked={formState.paymentValue === 'Paypal'}
+            checked={true}
             onChange={handlePaymentValue}
           ></StyledInput>
           Paypal
@@ -73,7 +83,7 @@ export const OrderForm = () => {
           ></StyledInput>
           Annat
         </StyledLable> */}
-        <StyledButtonPrimary onClick={handlePost}>Köp</StyledButtonPrimary>
+        <StyledButtonPrimary>Köp</StyledButtonPrimary>
         {/* <StyledLable>
           <StyledInput
             type="radio"
