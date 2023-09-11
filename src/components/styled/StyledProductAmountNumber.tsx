@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const StyledProductAmountNumber = styled.span`
   position: fixed;
-  top: 5px;
-  right: 5px;
+  top: 0.5rem;
+  right: 0.5rem;
   background: red;
   color: white;
   border-radius: 50%;
