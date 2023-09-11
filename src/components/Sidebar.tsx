@@ -1,11 +1,10 @@
 import { ChangeEvent, useContext } from 'react';
-
 import { StyledSelect } from './styled/StyledSelect';
 import { MoviesContext } from '../context/MoviesContext';
-import { IProductCategory } from "../models/IProductCategory";
-import { StyledForm } from "./styled/StyledForm";
-import { StyledH2 } from "./styled/StyledH2";
-import { StyledSearchInput } from "./styled/StyledSearchInput";
+import { IProductCategory } from '../models/IProductCategory';
+import { StyledForm } from './styled/StyledForm';
+import { StyledH2 } from './styled/StyledH2';
+import { StyledSearchInput } from './styled/StyledSearchInput';
 
 interface ISidebarProps {
   search: string;

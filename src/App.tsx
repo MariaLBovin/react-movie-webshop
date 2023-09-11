@@ -17,7 +17,6 @@ function App() {
   const [storedOrder, setStoredOrder] = useLocalStorage<Order>(
     'order',
     new Order('', '', 0, [])
-
   );
   const [movies, setMovies] = useState<IMovie[]>([]);
   const [categories, setCategories] = useState<IProductCategory[]>([]);
