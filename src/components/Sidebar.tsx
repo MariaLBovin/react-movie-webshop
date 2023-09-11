@@ -1,5 +1,5 @@
 import { ChangeEvent, useContext } from 'react';
-import { StyledButtonSecondary } from './styled/StyledButtonSecondary';
+
 import { StyledSelect } from './styled/StyledSelect';
 import { MoviesContext } from '../context/MoviesContext';
 import { IProductCategory } from "../models/IProductCategory";

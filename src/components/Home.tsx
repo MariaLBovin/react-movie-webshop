@@ -1,17 +1,19 @@
-import { MovieList } from "./MovieList";
-import { StyledUL } from "./styled/StyledUL";
-import { Sidebar } from "./Sidebar";
-import { StyledMain, StyledMoviesWrapper } from "./styled/Wrappers";
-import { useState, useContext } from "react";
-import { IMovie } from "../models/IMovie";
-import { MoviesContext } from "../context/MoviesContext";
-import { StyledSidebar } from "./styled/StyledSidebar";
-import { ICategory } from "../models/ICategory";
+import { MovieList } from './MovieList';
+import { StyledUL } from './styled/StyledUL';
+import { Sidebar } from './Sidebar';
+import { StyledMain, StyledMoviesWrapper } from './styled/Wrappers';
+import { useState, useContext } from 'react';
+import { IMovie } from '../models/IMovie';
+import { MoviesContext } from '../context/MoviesContext';
+import { StyledSidebar } from './styled/StyledSidebar';
+import { ICategory } from '../models/ICategory';
+import { useMovieData } from '../hooks/useMovieData';
+import { getMoviesData } from '../services/DataService';
 
 export const Home = () => {
   const { movies, categories } = useContext(MoviesContext);
-  const [displayedMovies, setDisplayedMovies] = useState<IMovie[]>(movies);
-  const [search, setSearch] = useState("");
+  const [displayedMovies, setDisplayedMovies] = useState<IMovie[]>([]);
+  const [search, setSearch] = useState('');
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -44,6 +46,12 @@ export const Home = () => {
 
     setDisplayedMovies(filteredMovies);
   };
+
+  const getData = async () => {
+    setDisplayedMovies(await getMoviesData());
+  };
+
+  useMovieData(movies, getData);
 
   return (
     <>
