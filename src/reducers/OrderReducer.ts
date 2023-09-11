@@ -83,7 +83,18 @@ export const OrderReducer = (order: Order, action: IOrderAction) => {
       };
     }
 
+    case ActionType.ADDED_CUSTOMER: {
+      const data = JSON.parse(action.payload) as Order;
+
+      return {
+        ...order,
+        createdBy: data.createdBy,
+        paymentMethod: data.paymentMethod,
+      };
+    }
+
     default:
       return order;
   }
 };
+
