@@ -13,34 +13,6 @@ export class FormData {
 
 export const OrderForm = () => {
   const { dispatch, order } = useContext(OrderContext);
-  
-  // const [formState, setFormState] = useState({
-  //   inputValue: '',
-  //   paymentValue: '',
-  // });
-
-  // console.log(order);
-  
-  // if(!order.createdBy){
-  //   dispatch({
-  //     type:ActionType.UPDATE_ORDER,
-  //     payload: JSON.stringify({...order, createdBy:''})
-  //   })
-  // }
-  
-
-  // const handleInputValue = (e: ChangeEvent<HTMLInputElement>) => {
-  //   setName(e.target.value)
-  //   dispatch({
-  //     type: ActionType.UPDATE_ORDERNAME,
-  //     payload:JSON.stringify({ ...order, inputValue: e.target.value }),
-  //   });
-  //   // order.createdBy='';
-
-  //   console.log(order);
-    
-  // };
-
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -52,7 +24,7 @@ export const OrderForm = () => {
     <>
       <form onSubmit={handleSubmit}>
         <StyledH2>Beställningsformulär</StyledH2>
-        <input
+        <StyledInput
           type="text"
           placeholder="Namn"
           value={order.createdBy}
@@ -62,7 +34,7 @@ export const OrderForm = () => {
               payload:JSON.stringify({ ...order, createdBy: e.target.value }),
             });
           }}
-        ></input>
+        ></StyledInput>
         <StyledH2>Betalningsalternativ</StyledH2>
         <StyledLable>
           <StyledInput
