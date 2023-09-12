@@ -1,7 +1,7 @@
 import { StyledInput } from './styled/StyledInput';
 import { StyledLable } from './styled/StyledLabel';
 import { StyledH2 } from './styled/StyledH2';
-import { ChangeEvent, useContext, useState } from 'react';
+import { ChangeEvent, useContext } from 'react';
 import { StyledButtonPrimary } from './styled/StyledButtonPrimary';
 import { ActionType } from '../models/ActionType';
 import { OrderContext } from '../context/OrderContext';
@@ -15,12 +15,8 @@ export const OrderForm = () => {
   const { dispatch, order } = useContext(OrderContext);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    
-    console.log(order);
+    e.preventDefault();
     postOrderData(order);
-    localStorage.removeItem('order')
-
   };
 
   return (
@@ -34,12 +30,12 @@ export const OrderForm = () => {
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
             dispatch({
               type: ActionType.UPDATE_ORDERNAME,
-              payload:JSON.stringify({ ...order, createdBy: e.target.value }),
+              payload: JSON.stringify({ ...order, createdBy: e.target.value }),
             });
             dispatch({
               type: ActionType.UPDATE_PRODUCT,
-              payload: JSON.stringify({...order})
-            })
+              payload: JSON.stringify({ ...order }),
+            });
           }}
         ></StyledInput>
         <StyledH2>Betalningsalternativ</StyledH2>
@@ -51,7 +47,10 @@ export const OrderForm = () => {
             onChange={(e: ChangeEvent<HTMLInputElement>) => {
               dispatch({
                 type: ActionType.UPDATE_ORDERPAYMENT,
-                payload: JSON.stringify({ ...order, paymentMethod: e.target.value }),
+                payload: JSON.stringify({
+                  ...order,
+                  paymentMethod: e.target.value,
+                }),
               });
             }}
           ></StyledInput>
@@ -65,15 +64,19 @@ export const OrderForm = () => {
             onChange={(e: ChangeEvent<HTMLInputElement>) => {
               dispatch({
                 type: ActionType.UPDATE_ORDERPAYMENT,
-                payload: JSON.stringify({ ...order, paymentMethod: e.target.value }),
+                payload: JSON.stringify({
+                  ...order,
+                  paymentMethod: e.target.value,
+                }),
               });
             }}
           ></StyledInput>
           Annat
         </StyledLable>
-        <StyledButtonPrimary>Köp</StyledButtonPrimary>
+        <StyledButtonPrimary as="a" href="/Confirmation">
+          Köp
+        </StyledButtonPrimary>
       </form>
-      
     </>
   );
 };

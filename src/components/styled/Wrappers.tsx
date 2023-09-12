@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledMain = styled.main`
   display: flex;
@@ -47,6 +47,7 @@ export const StyledMovieWrapper = styled.div`
 export const StyledCheckoutWrapper = styled(StyledMain)`
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
 `;
 
 export const StyledButtonWrapper = styled.div`

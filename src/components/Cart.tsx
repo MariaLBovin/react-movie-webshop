@@ -61,8 +61,8 @@ export const Cart = () => {
       </ul>
       {order.orderRows.length !== 0 && (
         <StyledButtonPrimary>
-          <Link to={"/checkout"}>TILL KASSAN</Link>
-          </StyledButtonPrimary>
+          <Link to={'/checkout'}>TILL KASSAN</Link>
+        </StyledButtonPrimary>
       )}
     </StyledCart>
   );
