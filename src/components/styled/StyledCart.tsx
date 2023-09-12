@@ -8,4 +8,6 @@ export const StyledCart = styled.div`
   top: 0;
   margin-top: 5rem;
   padding: 1rem;
+  overflow-y: scroll;
+  max-height: 90vh;
 `;

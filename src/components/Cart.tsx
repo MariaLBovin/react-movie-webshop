@@ -6,7 +6,11 @@ import { OrderRow } from '../models/OrderRow';
 import { ActionType } from '../models/ActionType';
 import { Link } from 'react-router-dom';
 
-export const Cart = () => {
+interface ICartProps {
+  toggleCart: () => void;
+}
+
+export const Cart = ({ toggleCart }: ICartProps) => {
   const { order, dispatch } = useContext(OrderContext);
 
   const handleClick = (row: OrderRow) => {
@@ -61,7 +65,9 @@ export const Cart = () => {
       </ul>
       {order.orderRows.length !== 0 && (
         <StyledButtonPrimary>
-          <Link to={'/checkout'}>TILL KASSAN</Link>
+          <Link to={'/checkout'} onClick={toggleCart}>
+            TILL KASSAN
+          </Link>
         </StyledButtonPrimary>
       )}
     </StyledCart>

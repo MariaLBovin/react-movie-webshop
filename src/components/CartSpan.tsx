@@ -30,7 +30,7 @@ export const CartSpan = () => {
       >
         shopping_cart
       </StyledCartButton>
-      {isToggled ? <Cart /> : null}
+      {isToggled ? <Cart toggleCart={toggleCart} /> : null}
     </>
   );
 };
