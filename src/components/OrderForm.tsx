@@ -1,7 +1,7 @@
 import { StyledInput } from './styled/StyledInput';
 import { StyledLable } from './styled/StyledLabel';
 import { StyledH2 } from './styled/StyledH2';
-import { ChangeEvent, useContext, useState } from 'react';
+import { ChangeEvent, useContext } from 'react';
 import { StyledButtonPrimary } from './styled/StyledButtonPrimary';
 import { ActionType } from '../models/ActionType';
 import { OrderContext } from '../context/OrderContext';
@@ -16,10 +16,7 @@ export const OrderForm = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    console.log(order);
     postOrderData(order);
-    localStorage.removeItem('order');
   };
 
   return (
@@ -76,7 +73,9 @@ export const OrderForm = () => {
           ></StyledInput>
           Annat
         </StyledLable>
-        <StyledButtonPrimary>Köp</StyledButtonPrimary>
+        <StyledButtonPrimary as="a" href="/Confirmation">
+          Köp
+        </StyledButtonPrimary>
       </form>
     </>
   );

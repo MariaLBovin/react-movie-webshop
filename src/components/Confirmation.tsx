@@ -11,17 +11,11 @@ export const Confirmation = () => {
     <>
       <StyledCheckoutWrapper>
         <StyledH2>Tack för ditt köp {order.createdBy}!</StyledH2>
-        <h3>Här är din order</h3>
-        {order.orderRows.map((object, index) => (
-          <div key={index} className="movie-checkout">
-            <h4>Vara: {object.product}</h4>
-            <p>Antal: {object.amount}</p>
-            <p> Pris: {object.price} kr</p>
-          </div>
-        ))}
-        <p>Betalningsmetod: {order.paymentMethod}</p>
-        <p>Summa: {order.totalPrice} kr</p>
-        <StyledButtonPrimary as="a" href="/">
+        <StyledButtonPrimary
+          as="a"
+          href="/"
+          onClick={() => localStorage.removeItem('order')}
+        >
           Tillbaka
         </StyledButtonPrimary>
       </StyledCheckoutWrapper>
