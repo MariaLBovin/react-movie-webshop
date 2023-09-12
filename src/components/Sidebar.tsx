@@ -35,8 +35,8 @@ export const Sidebar = ({
       <StyledH2>Categories</StyledH2>
       <StyledSelect onChange={getSelectedCategory}>
         <option value="">All</option>
-        {categories.map((category: IProductCategory) => (
-          <option key={category.categoryId} value={category.name}>
+        {categories.map((category: IProductCategory, i) => (
+          <option key={i} value={category.name}>
             {category.name}
           </option>
         ))}
