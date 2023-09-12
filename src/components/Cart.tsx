@@ -29,13 +29,13 @@ export const Cart = ({ toggleCart }: ICartProps) => {
 
   return (
     <StyledCart>
-      <p>Din kundvagn:</p>
+      <p>Your order:</p>
       <ul>
         {order.orderRows.map((row, index) => (
           <div key={index}>
             {row.product}
             <p>
-              antal: {row.amount}, pris: {row.price} kr
+              amount: {row.amount}, price: {row.price} kr
             </p>
             <button onClick={() => handleClick(row)}>-</button>
             <button
@@ -57,16 +57,16 @@ export const Cart = ({ toggleCart }: ICartProps) => {
                 })
               }
             >
-              Ta bort
+              Remove
             </StyledButtonPrimary>
           </div>
         ))}
-        <p>Totalsumma: {order.totalPrice} kr</p>
+        <p>Total price: {order.totalPrice} kr</p>
       </ul>
       {order.orderRows.length !== 0 && (
         <StyledButtonPrimary>
           <Link to={'/checkout'} onClick={toggleCart}>
-            TILL KASSAN
+            Checkout
           </Link>
         </StyledButtonPrimary>
       )}

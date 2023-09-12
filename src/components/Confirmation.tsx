@@ -10,13 +10,13 @@ export const Confirmation = () => {
   return (
     <>
       <StyledCheckoutWrapper>
-        <StyledH2>Tack för ditt köp {order.createdBy}!</StyledH2>
+        <StyledH2>Thank you for your purchase {order.createdBy}!</StyledH2>
         <StyledButtonPrimary
           as="a"
           href="/"
           onClick={() => localStorage.removeItem('order')}
         >
-          Tillbaka
+          Back
         </StyledButtonPrimary>
       </StyledCheckoutWrapper>
     </>

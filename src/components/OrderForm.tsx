@@ -22,10 +22,10 @@ export const OrderForm = () => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <StyledH2>Beställningsformulär</StyledH2>
+        <StyledH2>Order form</StyledH2>
         <StyledInput
           type="text"
-          placeholder="Namn"
+          placeholder="Name"
           value={order.createdBy}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
             dispatch({
@@ -38,7 +38,7 @@ export const OrderForm = () => {
             });
           }}
         ></StyledInput>
-        <StyledH2>Betalningsalternativ</StyledH2>
+        <StyledH2>Payment options</StyledH2>
         <StyledLable>
           <StyledInput
             type="radio"
@@ -71,10 +71,10 @@ export const OrderForm = () => {
               });
             }}
           ></StyledInput>
-          Annat
+          Other
         </StyledLable>
         <StyledButtonPrimary as="a" href="/Confirmation">
-          Köp
+          Purchase
         </StyledButtonPrimary>
       </form>
     </>

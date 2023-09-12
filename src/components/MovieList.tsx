@@ -31,7 +31,7 @@ export const MovieList = ({ movie }: IMovieProps) => {
       <StyledMovieCardBottomSection>
         <h3>{movie.name}</h3>
         <StyledButtonSecondary as="a" href={'./movie/' + movie.id}>
-          Läs mer
+          Read more
         </StyledButtonSecondary>
         <StyledButtonWrapper>
           <StyledButtonPrimary
@@ -42,7 +42,7 @@ export const MovieList = ({ movie }: IMovieProps) => {
               })
             }
           >
-            Köp
+            Purchase
           </StyledButtonPrimary>
         </StyledButtonWrapper>
       </StyledMovieCardBottomSection>

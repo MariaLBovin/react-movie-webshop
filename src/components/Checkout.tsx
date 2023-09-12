@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { OrderForm } from './OrderForm';
 import { StyledUL } from './styled/StyledUL';
 import { OrderContext } from '../context/OrderContext';
-import { OrderList } from "./OrderList";
+import { OrderList } from './OrderList';
 import { StyledCheckoutWrapper } from './styled/Wrappers';
 import { StyledH2 } from './styled/StyledH2';
 import { StyledButtonSecondary } from './styled/StyledButtonSecondary';
@@ -29,11 +29,11 @@ export const Checkout = () => {
             <OrderList row={row} key={row.productId}></OrderList>
           ))}
         </StyledUL>
-        <StyledH2>Total beställningssumma: {order.totalPrice} kr</StyledH2>
+        <StyledH2>Total price: {order.totalPrice} kr</StyledH2>
         <OrderForm></OrderForm>
         <Link to="/">
           <StyledButtonSecondary onClick={handleReset}>
-            Rensa
+            Clear
           </StyledButtonSecondary>
         </Link>
       </StyledCheckoutWrapper>

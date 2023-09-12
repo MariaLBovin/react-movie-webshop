@@ -1,19 +1,18 @@
-import { OrderRow } from "../models/OrderRow"
-import { StyledH2 } from "./styled/StyledH2"
-import { StyledLi } from "./styled/StyledLi"
+import { OrderRow } from '../models/OrderRow';
+import { StyledH2 } from './styled/StyledH2';
+import { StyledLi } from './styled/StyledLi';
 
 interface OrderRowsProps {
-    row: OrderRow
+  row: OrderRow;
 }
 
-export const OrderList = ({row}:OrderRowsProps) => {
+export const OrderList = ({ row }: OrderRowsProps) => {
   return (
     <>
-    <StyledLi>
+      <StyledLi>
         <StyledH2>{row.product}</StyledH2>
-        <h3>{row.price}</h3>
-    </StyledLi>
-
+        <h3>{row.price} kr</h3>
+      </StyledLi>
     </>
-  )
-}
+  );
+};
